@@ -1,21 +1,21 @@
 {
-  "name": "sparklemotion",
+  "name": "swarm-animation",
   "version": "0.0.1",
-  "description": "Reusable, performant CSS animations for web",
+  "description": "Reusable, performant CSS and js animations for web, React-friendly",
   "main": "src/animations.sass",
   "scripts": {
     "test": "grunt travis --verbose"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/unjust/sparklemotion.git"
+    "url": "git+https://github.com/meetup/swarm-animation.git"
   },
-  "author": "unjust@gmail.com",
+  "author": "ivy@meetup.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/unjust/sparklemotion/issues"
+    "url": "https://github.com/meetup/swarm-animation/issues"
   },
-  "homepage": "https://github.com/unjust/sparklemotion#readme",
+  "homepage": "https://github.com/meetup/swarm-animation#readme",
   "dependencies": {
     "bourbon": "^4.2.7"
   },
