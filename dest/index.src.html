@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sparklemotion Docs</title>
+
+	<link rel="stylesheet" type="text/css" href="<!-- @echo CSS_FONT -->" />
+	<link rel="stylesheet" type="text/css" href="<!-- @echo CSS_SASSQUATCH -->" />
+
+	<link rel="stylesheet" type="text/css" href="css/animation.css" />	
+	<link rel="stylesheet" type="text/css" href="css/jekyll-github.css" />	
+	<link rel="stylesheet" type="text/css" href="css/doc_styles.css" />	
+</head>
+<body>
+	<section class="stripe stripe--collection">
+		<div class="bounds bounds--sideHeader">
+            <div class="bounds-header">
+                <header>
+                    <h1 class="text--display1 text--red">sparkle motion</h1>
+                    <p><!-- @echo DESCRIPTION --></p>
+                    <p class="chunk text--caption">version <!-- @echo VERSION --></p>
+                    <p><a class="link" href="https://github.com/unjust/sparklemotion">&larr; github</a></p>
+                </header>		
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="#fade">fade</a>
+                        </li>
+                        <li>
+                            <a href="#expand">expand</a>
+                        </li>
+                        <li>
+                            <a href="#pop">pop</a>
+                        </li>
+                        <li>
+                            <a href="#flip">flip</a>
+                        </li>
+                        <li>
+                            <a href="#cascade">cascade</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div> 
+			<div id="main-content" class="padding--top">
+				<section id="fade-section">
+					<a name="fade"></a>
+					<div>
+						<h1>Fade</h1>
+						<div class="animateEl anim-fade--in"></div>
+						<div class="animateEl transparent anim-fade--out"></div>
+						<div class="animateEl j-fade--out"></div>
+						<a href="" class="j-click">fade me in</a>
+						<div class="animateEl transparent j-fade--in"></div>
+						<script>
+							var muAnimate = {
+								'show': function(el) {
+									el.classList.add('anim-fade--in');
+								},
+								'hide': function(el) {
+									el.classList.add('anim-fade--out');
+								}
+							};
+
+							var elFadeOut = document.querySelector('.j-fade--out'),
+								elFadeIn = document.querySelector('.j-fade--in'),
+								link = document.querySelector('.j-click');
+							elFadeOut.addEventListener('click', (e) => muAnimate.hide(elFadeOut));
+							link.addEventListener('click', (e) => {
+								e.preventDefault();
+								elFadeIn.classList.add('anim-fade--in');
+							});
+						</script>
+						<figure class="highlight"><pre><code class="language-html" data-lang="html">							<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"wtf"</span><span class="nt">&gt;</span>hello world<span class="nt">&lt;/div&gt;</span>
+						</code></pre></figure>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

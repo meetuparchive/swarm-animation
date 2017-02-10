@@ -1,0 +1,13 @@
+#main-content {
+  padding-left: 36px; }
+
+nav {
+  margin-top: 24px; }
+  nav ul {
+    list-style-type: none; }
+
+.animateEl {
+  background-color: #000;
+  width: 100px;
+  height: 100px;
+  margin: 10px; }

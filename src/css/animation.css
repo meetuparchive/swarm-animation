@@ -1,0 +1,16 @@
+@keyframes fade--in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+.fade--in {
+  -webkit-animation: fade--in 0.5s ease-in;
+  -moz-animation: fade--in 0.5s ease-in;
+  animation: fade--in 0.5s ease-in;
+  -webkit-animation-iteration-count: 1;
+  -moz-animation-iteration-count: 1;
+  animation-iteration-count: 1; }
+
+.transparent {
+  opacity: 0; }
