@@ -1,6 +1,6 @@
-# Sparklemotion [![Build Status](https://travis-ci.org/unjust/sparklemotion.svg?branch=master)](https://travis-ci.org/unjust/sparklemotion)
-Reusable animation CSS for web
-http://unjust.github.io/sparklemotion/
+# swarm-animation [![Build Status](https://travis-ci.org/unjust/sparklemotion.svg?branch=master)](https://travis-ci.org/unjust/sparklemotion)
+Reusable animation CSS and js for web, React friendly
+http://meetup.github.io/swarm-animation/
 
 ## Installation
 
@@ -8,10 +8,37 @@ http://unjust.github.io/sparklemotion/
 * from inside the repo directory, run `npm install`
 
 ## Building the project
-  `grunt` or `grunt compile` builds the sass.  
-  `dist/animation.css` is then available for use.  
-  `grunt docs` compiles the sass and builds the docs for the `gh-pages` branch
- 
+  `grunt` or `grunt compile` builds the sass. `dist/animation.css` is then available for use in your project.   
+  `grunt docs` compiles the sass and builds the docs for the `gh-pages` branch.
+
+## Development
+### css
+   The sass files live in the root of `src/` for now.  
+   `animation.scss` imports sass partials for different responsibilities as the project grows.  
+   Future partials will be made for opacity, loaders, entering/leaving, scale, transorm for example.  
+
+### js
+   The `src/js/lib.js` file will contain javascript functions that you can use in your js to run certain animations/apply css based on user interaction.  
+   Add to this file if you want to add javascript that should apply classes on click, change, load, etc.  
+   Anything added will need to be tested. See (Testing)  
+
+### React
+   React can apply css animations from swarm-animation if their names [follow certain convention](https://facebook.github.io/react/docs/animation.html).  
+   Rather than use another external lib at the moment lets see if we can develop animations that fit our needs for both classic and new Meetup.
+
+## Testing
+  We need test coverage for all of our js animation helpers.   
+  Travis CI runs these jasmine tests for the repo.  
+  
+### running
+  In development, use `grunt test` to run the tests.  
+  This command calls `webpack` and `jasmine` and compiles `src/js/lib.js` (where you add your new functions) and turns it into `test/build/lib_compiled.js`.  
+  It also creates `test/build/spec_compiled.js` out of your specs.  
+  
+### writing
+  Test code lives in `test/js`. Write your specs in Jasmine, using es6, here.
+
+---
 ## Resources
 
 ### Performance related
@@ -42,14 +69,16 @@ http://valhead.com/2016/05/05/how-fast-should-your-ui-animations-be/
 * Animating Anthropomorphism: Giving Minds to Geometric Shapes, Jason G. Goldman on March 8, 2013: http://rfld.me/1Si0aRa or https://archive.is/aojec.
 * The film from the Fritz Heider and Marianne Simmel study: http://rfld.me/1MwhYpu.
 
-### Possible libs
+### Possible libs to consider
 http://anime-js.com/  
 https://github.com/chenglou/react-motion  
 https://github.com/callemall/material-ui/ (see https://github.com/callemall/material-ui/blob/master/src/Dialog/Dialog.js#L95)
 
-### Docs
+### React Animation Docs
 https://facebook.github.io/react/docs/animation.html  
 https://www.tutorialspoint.com/reactjs/reactjs_animations.htm
+
+---
 
 ## Animation catalogue
 
