@@ -1,0 +1,32 @@
+@import "../../../node_modules/bourbon/app/assets/stylesheets/_bourbon.scss";
+
+#main-content {
+    padding-left:36px;
+}
+
+nav {
+	margin-top:24px;
+
+    ul {
+		list-style-type: none;
+	}
+}
+
+section {
+	padding: 16px;
+	border-bottom: 1px #333 solid;
+}
+
+.animateEl {
+    background-color: #000;
+    width:100px;
+    height:100px;
+}
+
+.code-js {
+
+}
+
+pre {
+	white-space:normal;
+}

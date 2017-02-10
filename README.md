@@ -4,13 +4,24 @@ http://meetup.github.io/swarm-animation/
 
 ## Installation
 
-* clone the repo
-* from inside the repo directory, run `npm install`
+1. clone the repo
+1. from inside the repo directory, run `npm install`
+1. setup jekyll for building docs [see github's article for step by step](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/)
+	- have Ruby 2.1.0 or higher installed (I used [rvm](https://github.com/rvm/rvm) to get 2.1)
+	- install bundler with `gem install bundler`
+	- run `bundle install` which will use the Gemfile to get jekyll
+
 
 ## Building the project
   `grunt` or `grunt compile` builds the sass. `dist/animation.css` is then available for use in your project.   
   `grunt docs` compiles the sass and builds the docs for the `gh-pages` branch.
 
+### Building docs
+  `grunt docs-local` compiles the sass and builds the docs with jekyll  
+   you should then be able to open your browser to preview the docs
+
+  `grunt docs` compiles the sass and builds the docs for the `gh-pages` branch *and pushes*
+ 
 ## Development
 ### css
    The sass files live in the root of `src/` for now.  

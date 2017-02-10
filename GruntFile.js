@@ -2,16 +2,16 @@ module.exports = function(grunt) {
 
 	require('load-grunt-tasks')(grunt);
 
-	const	DOCS_SRC = 'docs/src/',
-			DOCS_DEST = 'docs/dest/',
-			TEST_DEST = 'test/build/';
+	const DOCS_SRC = 'docs/src/',
+		DOCS_DEST = 'docs/dest/',
+		TEST_DEST = 'test/build/';
 
 	grunt.initConfig({
 		package: grunt.file.readJSON('package.json'),
 
 		'clean': {
+			css: ['dist/*.css', 'docs/processed'],
 			test : ['test/build'],
-			css: ['dist/*.css'],
 			js: ['dist/*.js']
 		},
 
@@ -19,19 +19,24 @@ module.exports = function(grunt) {
 			dist: {
 				files: {
 					'dist/animation.css': 'src/animation.scss',
+					// for jekyll
+					'docs/src/css/animation.css': 'src/animation.scss',
+					'docs/src/css/doc_styles.css': DOCS_SRC + 'css/doc_styles.scss',
+					'docs/src/css/jekyll-github.css': DOCS_SRC + 'css/jekyll-github.css',
 					'docs/dest/css/animation.css': 'src/animation.scss',
-					'docs/dest/css/elements.css': DOCS_SRC + 'css/elements.scss'
+					'docs/dest/css/doc_styles.css': DOCS_SRC + 'css/doc_styles.scss',
+					'docs/dest/css/jekyll-github.css': DOCS_SRC + 'css/jekyll-github.css' // this doesnt need processing, just mv to dest
 				}
 			}
 		},
 
 		'webpack': {
 			test: {
-				// use babel loader to turn es6 to js for 
+				// use babel loader to turn es6 to js for
 				// test/build dir
 				entry: {
-					'lib': ['./src/js/lib.js'],
-					'spec': './test/js/DummySpec.js',
+					lib: ['./src/js/lib.js'],
+					spec: './test/js/DummySpec.js',
 				},
 				// resolve: {},
 				output: {
@@ -86,24 +91,41 @@ module.exports = function(grunt) {
 				},
 			},
 			docs: {
-				src: DOCS_SRC + 'index.html',
-				dest: DOCS_DEST + 'index.html'
+				files: {
+					'docs/src/index.html': 'docs/src/index.src.html',
+				}
 			}
 		},
 
 		'gh-pages': {
 			options: {
-				base: 'docs'
+				base: DOCS_DEST
 			},
 			src: ['**']
+		},
+
+		'jekyll': {
+			options: {
+				src: DOCS_SRC,
+				dest: DOCS_DEST,
+			},
+			local: {
+				options: {
+					watch: true,
+					serve: true
+				}
+			},
+			ghpages: {
+				serve: false
+			}
 		}
 	});
 
 	// TODO grunt copy for js, lint, uglify?
 	grunt.registerTask('compile', ['clean', 'sass', 'webpack']);
 	grunt.registerTask('default', ['compile']);
-	grunt.registerTask('docs', ['compile', 'preprocess', 'gh-pages']);
-	// grunt.registerTask('test', ['babel:test', 'webpack', 'jasmine', 'connect:jasmine_site:keepalive']);
+	grunt.registerTask('local-docs', [ 'compile', 'preprocess', 'jekyll:local']);
+	grunt.registerTask('docs', ['compile', 'preprocess', 'jekyll:ghpages', 'gh-pages']);
 	grunt.registerTask('test', ['clean:test', 'webpack', 'jasmine', 'connect:jasmine_site:keepalive']);
 	grunt.registerTask('travis', ['clean:test', 'webpack', 'jasmine']);
 };

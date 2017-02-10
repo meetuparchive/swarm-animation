@@ -1,3 +1,6 @@
+---
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +10,9 @@
 	<link rel="stylesheet" type="text/css" href="<!-- @echo CSS_FONT -->" />
 	<link rel="stylesheet" type="text/css" href="<!-- @echo CSS_SASSQUATCH -->" />
 
-
 	<link rel="stylesheet" type="text/css" href="css/animation.css" />	
-	<link rel="stylesheet" type="text/css" href="css/elements.css" />	
+	<link rel="stylesheet" type="text/css" href="css/jekyll-github.css" />	
+	<link rel="stylesheet" type="text/css" href="css/doc_styles.css" />	
 </head>
 <body>
 	<section class="stripe stripe--collection">
@@ -46,7 +49,33 @@
 					<a name="fade"></a>
 					<div>
 						<h1>Fade</h1>
-						<div class="animateEl fade--in"></div>
+						<div class="animateEl anim-fade--in"></div>
+						<div class="animateEl transparent anim-fade--out"></div>
+						<div class="animateEl j-fade--out"></div>
+						<a href="" class="j-click">fade me in</a>
+						<div class="animateEl transparent j-fade--in"></div>
+						<script>
+							var muAnimate = {
+								'show': function(el) {
+									el.classList.add('anim-fade--in');
+								},
+								'hide': function(el) {
+									el.classList.add('anim-fade--out');
+								}
+							};
+
+							var elFadeOut = document.querySelector('.j-fade--out'),
+								elFadeIn = document.querySelector('.j-fade--in'),
+								link = document.querySelector('.j-click');
+							elFadeOut.addEventListener('click', (e) => muAnimate.hide(elFadeOut));
+							link.addEventListener('click', (e) => {
+								e.preventDefault();
+								elFadeIn.classList.add('anim-fade--in');
+							});
+						</script>
+						{% highlight html %}
+							<div class="wtf">hello world</div>
+						{% endhighlight %}
 					</div>
 				</section>
 			</div>

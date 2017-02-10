@@ -31,6 +31,7 @@
     "grunt-preprocess": "5.1.0",
     "grunt-sass": "^1.2.1",
     "grunt-webpack": "^1.0.18",
+    "grunt-jekyll": "^0.4.4",
     "load-grunt-tasks": "^3.5.2",
     "require": "^2.4.20",
     "webpack": "^1.14.0",
