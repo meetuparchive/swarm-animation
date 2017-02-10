@@ -34,7 +34,8 @@ http://meetup.github.io/swarm-animation/
   In development, use `grunt test` to run the tests.  
   This command calls `webpack` and `jasmine` and compiles `src/js/lib.js` (where you add your new functions) and turns it into `test/build/lib_compiled.js`.  
   It also creates `test/build/spec_compiled.js` out of your specs.  
-  
+  It runs a server with `connect` and keeps it alive. You can navigate to `http://localhost:8888/test/build/SpecRunner.html` to see the output (also shown on command line).
+
 ### writing
   Test code lives in `test/js`. Write your specs in Jasmine, using es6, here.
 

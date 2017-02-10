@@ -60,7 +60,7 @@ module.exports = function(grunt) {
 							index: './test/build/SpecRunner.html'
 						}
 					},*/
-					port: 8000
+					port: 8888
 				}
 			}
 		},
