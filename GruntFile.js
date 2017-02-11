@@ -86,14 +86,14 @@ module.exports = function(grunt) {
 				},
 			},
 			docs: {
-				src: DOCS_SRC + 'index.html',
+				src: DOCS_SRC + 'index.src.html', // src file is where editing should happen
 				dest: DOCS_DEST + 'index.html'
 			}
 		},
 
 		'gh-pages': {
 			options: {
-				base: 'docs'
+				base: DOCS_DEST
 			},
 			src: ['**']
 		}
