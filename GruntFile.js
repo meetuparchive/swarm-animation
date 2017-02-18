@@ -28,7 +28,6 @@ module.exports = function(grunt) {
 					// for jekyll
 					'docs/src/css/animation.css': 'src/animation.scss',
 					'docs/src/css/doc_styles.css': DOCS_SRC + 'css/doc_styles.scss',
-					'docs/src/css/jekyll-github.css': DOCS_SRC + 'css/jekyll-github.css',
 					'docs/dest/css/animation.css': 'src/animation.scss',
 					'docs/dest/css/doc_styles.css': DOCS_SRC + 'css/doc_styles.scss',
 					'docs/dest/css/jekyll-github.css': DOCS_SRC + 'css/jekyll-github.css' // this doesnt need processing, just mv to dest

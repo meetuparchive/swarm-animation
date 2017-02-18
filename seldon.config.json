@@ -1,0 +1,8 @@
+{ 
+    "source": "src/",
+    "destination": "docs/src/",
+    "templates": {
+        "layout" : "docs/templates/layout.hbs",
+        "examples" : "docs/templates/example.hbs"
+    }
+}
