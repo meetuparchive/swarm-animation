@@ -1,4 +1,4 @@
-# swarm-animation [![Build Status](https://travis-ci.org/unjust/sparklemotion.svg?branch=master)](https://travis-ci.org/unjust/sparklemotion)
+# swarm-animation [![Build Status](https://travis-ci.org/meetup/swarm-animation.svg?branch=master)](https://travis-ci.org/meetup/swarm-animation)
 Reusable animation CSS and js for web, React friendly
 http://meetup.github.io/swarm-animation/
 

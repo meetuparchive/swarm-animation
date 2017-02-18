@@ -1,21 +1,21 @@
 {
-  "name": "sparklemotion",
+  "name": "swarm-animation",
   "version": "0.0.1",
-  "description": "Reusable, performant CSS animations for web",
+  "description": "Reusable, performant CSS animations and js helpers, React-friendly",
   "main": "src/animations.sass",
   "scripts": {
     "test": "grunt travis --verbose"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/unjust/sparklemotion.git"
+    "url": "git+https://github.com/meetup/swarm-animation.git"
   },
-  "author": "unjust@gmail.com",
+  "author": "ivy@meetup.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/unjust/sparklemotion/issues"
+    "url": "https://github.com/meetup/swarm-animation/issues"
   },
-  "homepage": "https://github.com/unjust/sparklemotion#readme",
+  "homepage": "https://github.com/meetup/swarm-animation#readme",
   "dependencies": {
     "bourbon": "^4.2.7"
   },
@@ -27,11 +27,13 @@
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-connect": "^1.0.2",
     "grunt-contrib-jasmine": "^1.1.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-exec": "^1.0.1",
     "grunt-gh-pages": "^2.0.0",
+    "grunt-jekyll": "^0.4.4",
     "grunt-preprocess": "5.1.0",
     "grunt-sass": "^1.2.1",
     "grunt-webpack": "^1.0.18",
-    "grunt-jekyll": "^0.4.4",
     "load-grunt-tasks": "^3.5.2",
     "require": "^2.4.20",
     "webpack": "^1.14.0",

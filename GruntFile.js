@@ -6,6 +6,12 @@ module.exports = function(grunt) {
 		DOCS_DEST = 'docs/dest/',
 		TEST_DEST = 'test/build/';
 
+	const WATCH_PATHS = [
+		'docs/index.html',
+		'docs/templates/**/*.*',
+		'scss/**/*.scss'
+	];
+
 	grunt.initConfig({
 		package: grunt.file.readJSON('package.json'),
 
@@ -84,15 +90,16 @@ module.exports = function(grunt) {
 			// preprocess docs
 			options: {
 				context: {
-					'VERSION': '<%= package.version %>',
-					'DESCRIPTION': '<%= package.description %>',
-					'CSS_SASSQUATCH': 'https://meetup.github.io/sassquatch2/bundle/sassquatch.css',
-					'CSS_FONT': 'https://secure.meetupstatic.com/fonts/graphik.css'
+					VERSION: '<%= package.version %>',
+					DESCRIPTION: '<%= package.description %>',
+					SQ2_URL: 'https://meetup.github.io/sassquatch2/bundle/sassquatch.css',
+					FONT_URL: 'https://secure.meetupstatic.com/fonts/graphik.css'
 				},
 			},
 			docs: {
 				files: {
-					'docs/src/index.html': 'docs/src/index.src.html',
+					// doc.html seldon --> index.html
+					'docs/src/index.html': DOCS_SRC + 'doc.html'
 				}
 			}
 		},
@@ -104,28 +111,24 @@ module.exports = function(grunt) {
 			src: ['**']
 		},
 
-		'jekyll': {
+		'exec': {
 			options: {
-				src: DOCS_SRC,
-				dest: DOCS_DEST,
+				shell: 'bash'
 			},
-			local: {
-				options: {
-					watch: true,
-					serve: true
-				}
-			},
-			ghpages: {
-				serve: false
-			}
-		}
+			seldon: 'node node_modules/seldon/seldon.js seldon.config.json'
+		},
+
+		'watch': {
+			files: WATCH_PATHS,
+			tasks: ['local-docs']
+		},
 	});
 
 	// TODO grunt copy for js, lint, uglify?
 	grunt.registerTask('compile', ['clean', 'sass', 'webpack']);
 	grunt.registerTask('default', ['compile']);
-	grunt.registerTask('local-docs', [ 'compile', 'preprocess', 'jekyll:local']);
-	grunt.registerTask('docs', ['compile', 'preprocess', 'jekyll:ghpages', 'gh-pages']);
+	grunt.registerTask('local-docs', [ 'compile', 'exec:seldon', 'preprocess']);
+	grunt.registerTask('docs', ['local-docs', 'gh-pages']);
 	grunt.registerTask('test', ['clean:test', 'webpack', 'jasmine', 'connect:jasmine_site:keepalive']);
 	grunt.registerTask('travis', ['clean:test', 'webpack', 'jasmine']);
 };

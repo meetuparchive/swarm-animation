@@ -4,7 +4,7 @@
   100% {
     opacity: 1; } }
 
-.fade--in {
+.anim-fade--in {
   -webkit-animation: fade--in 0.5s ease-in;
   -moz-animation: fade--in 0.5s ease-in;
   animation: fade--in 0.5s ease-in;
@@ -14,3 +14,23 @@
 
 .transparent {
   opacity: 0; }
+
+/*doc
+---
+title: My Component Title
+name: myUniqueComponentName
+category: My Category Name
+---
+
+**Any** _markdown_ you want can go here.
+Github-flavored markdown supported.
+
+```html_example
+<p>This is a special fenced code block that does neat things:<p>
+<ol>
+    <li>Put example code here<li>
+    <li>It will be rendered directly to static documentation<li>
+    <li>Escaped html will appear under the example<li>
+<ol>
+```
+*/
