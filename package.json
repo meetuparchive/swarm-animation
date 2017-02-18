@@ -36,6 +36,7 @@
     "grunt-webpack": "^1.0.18",
     "load-grunt-tasks": "^3.5.2",
     "require": "^2.4.20",
+    "seldon": "^0.3.0",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2"
   }
