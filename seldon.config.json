@@ -1,6 +1,6 @@
 { 
     "source": "src/",
-    "destination": "docs/src/",
+    "destination": "docs/dest/",
     "assets": [
         "docs/dest/css"
     ],

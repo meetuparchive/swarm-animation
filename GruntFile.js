@@ -106,7 +106,7 @@ module.exports = function(grunt) {
 			docs: {
 				files: {
 					// doc.html seldon --> index.html
-					'docs/dest/index.html': DOCS_SRC + 'doc.html'
+					'docs/dest/index.html': DOCS_DEST + 'doc.html'
 				}
 			}
 		},
