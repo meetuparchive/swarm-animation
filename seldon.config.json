@@ -1,8 +1,11 @@
 { 
     "source": "src/",
     "destination": "docs/src/",
+    "assets": [
+        "docs/dest/css"
+    ],
     "templates": {
         "layout" : "docs/templates/layout.hbs",
-        "examples" : "docs/templates/example.hbs"
+        "example" : "docs/templates/example.hbs"
     }
 }
