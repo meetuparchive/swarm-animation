@@ -11,6 +11,18 @@ http://meetup.github.io/swarm-animation/
   `grunt` or `grunt compile` builds the sass. `dist/animation.css` is then available for use in your project.   
   `grunt docs` compiles the sass and builds the docs for the `gh-pages` branch.
 
+## Goals
+Broadly - to provide reusable and performant animations to be used on web.
+
+The vision is, for example, if we want an animation for a popover to show and hide, we already have CSS classes and a javascript function to apply these.
+
+The focus of the project is on providing CSS animations.  
+There is need for animations applied with JS as well, esp if we can get them to be more performant using methods like (FLIP)[https://medium.com/outsystems-experts/flip-your-60-fps-animations-flip-em-good-372281598865#.m076uxhcv]. 
+Javascript utilities for applying and removing css classes in a standard way will also be provided.
+
+### What about React?
+   All of these should work with React as well. React can apply css animations from swarm-animation if their names [follow certain convention](https://facebook.github.io/react/docs/animation.html). Whatever css classes we develop, we can also make sure they conform to the naming convention (with a mixin possibly). Rather than use another external lib at the moment lets see if we can develop animations that fit our needs for both classic and new Meetup.
+
 ## Development
 ### css
    The sass files live in the root of `src/` for now.  
@@ -21,10 +33,6 @@ http://meetup.github.io/swarm-animation/
    The `src/js/lib.js` file will contain javascript functions that you can use in your js to run certain animations/apply css based on user interaction.  
    Add to this file if you want to add javascript that should apply classes on click, change, load, etc.  
    Anything added will need to be tested. See (Testing)  
-
-### React
-   React can apply css animations from swarm-animation if their names [follow certain convention](https://facebook.github.io/react/docs/animation.html).  
-   Rather than use another external lib at the moment lets see if we can develop animations that fit our needs for both classic and new Meetup.
 
 ## Testing
   We need test coverage for all of our js animation helpers.   
