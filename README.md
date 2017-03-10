@@ -17,11 +17,12 @@ Broadly - to provide reusable and performant animations to be used on web.
 The vision is, for example, if we want an animation for a popover to show and hide, we already have CSS classes and a javascript function to apply these.
 
 The focus of the project is on providing CSS animations.  
-There is need for animations applied with JS as well, esp if we can get them to be more performant using methods like (FLIP)[https://medium.com/outsystems-experts/flip-your-60-fps-animations-flip-em-good-372281598865#.m076uxhcv]. 
+There is need for animations applied with JS as well, esp if we can get them to be more performant using methods like (FLIP)[https://medium.com/outsystems-experts/flip-your-60-fps-animations-flip-em-good-372281598865#.m076uxhcv].  
 Javascript utilities for applying and removing css classes in a standard way will also be provided.
 
 ### What about React?
-   All of these should work with React as well. React can apply css animations from swarm-animation if their names [follow certain convention](https://facebook.github.io/react/docs/animation.html). Whatever css classes we develop, we can also make sure they conform to the naming convention (with a mixin possibly). Rather than use another external lib at the moment lets see if we can develop animations that fit our needs for both classic and new Meetup.
+   All of these should work with React as well. React can apply css animations from swarm-animation if their names [follow certain convention](https://facebook.github.io/react/docs/animation.html).  
+   Whatever css classes we develop, we can also make sure they conform to the naming convention (with a mixin possibly). Rather than use another external lib at the moment lets see if we can develop animations that fit our needs for both classic and new Meetup.
 
 ## Development
 ### css
@@ -46,6 +47,16 @@ Javascript utilities for applying and removing css classes in a standard way wil
 
 ### writing
   Test code lives in `test/js`. Write your specs in Jasmine, using es6, here.
+
+---
+
+## Animation catalogue
+
+A list of animations we should have:  
+fade / opacity (currently needed on landing page, maybe start flow)  
+expand /collapse (accordions, maybe modals)  
+loading animations  
+add/remove (lists of events, attendees)  
 
 ---
 ## Resources
@@ -87,12 +98,7 @@ https://github.com/callemall/material-ui/ (see https://github.com/callemall/mate
 https://facebook.github.io/react/docs/animation.html  
 https://www.tutorialspoint.com/reactjs/reactjs_animations.htm
 
----
 
-## Animation catalogue
-
-A list of animations we should have:  
-fade / opacity (currently needed on landing page, maybe start flow)
 
 
 
