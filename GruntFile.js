@@ -4,7 +4,9 @@ module.exports = function(grunt) {
 
 	const DOCS_SRC = 'docs/src/',
 		DOCS_DEST = 'docs/dest/',
-		TEST_DEST = 'test/build/';
+		TEST_DEST = 'test/build/',
+		DIST = 'dist/',
+		SRC = 'src/';
 
 	const WATCH_PATHS = [
 		'docs/templates/**/*.*',
@@ -13,7 +15,7 @@ module.exports = function(grunt) {
 	];
 
 	grunt.initConfig({
-		package: grunt.file.readJSON('package.json'),
+		'package': grunt.file.readJSON('package.json'),
 
 		'clean': {
 			css: ['dist/*.css', 'docs/processed'],
@@ -26,13 +28,31 @@ module.exports = function(grunt) {
 				files: {
 					'dist/animation.css': 'src/animation.scss',
 					// for docs
-					'docs/dest/css/animation.css': DOCS_SRC + 'css/animation.scss',
-					'docs/dest/css/doc_styles.css': DOCS_SRC + 'css/doc_styles.scss',
+					'docs/dest/css/animation.css': `${DOCS_SRC}css/animation.scss`,
+					'docs/dest/css/doc_styles.css': `${DOCS_SRC}css/doc_styles.scss`,
 				}
 			}
 		},
 
 		'webpack': {
+			dist: {
+				// use babel loader to turn es6 to js for
+				// test/build dir
+				entry: `./${SRC}js/lib.js`,
+				output: {
+					path: `./${DIST}`,
+					filename: 'lib.js'
+				},
+				module: {
+					loaders: [{
+						test: /\.js$/,
+						exclude: /node_modules/,
+						loader: 'babel-loader'
+					}]
+				}
+			},
+			// TODO, make test use compiled lib from main
+			// so not to recompile
 			test: {
 				// use babel loader to turn es6 to js for
 				// test/build dir
@@ -40,9 +60,8 @@ module.exports = function(grunt) {
 					lib: ['./src/js/lib.js'],
 					spec: './test/js/DummySpec.js',
 				},
-				// resolve: {},
 				output: {
-					path: './' + TEST_DEST,
+					path: `./${TEST_DEST}`,
 					filename: '[name]_compiled.js'
 				},
 				module: {
@@ -69,25 +88,25 @@ module.exports = function(grunt) {
 					port: 8888
 				}
 			},
-            docs: {
+			docs: {
 				options: {
-                    base: {
+					base: {
 						path: DOCS_DEST,
 						options: {
 							index: 'index.html'
 						}
 					},
 					port: 8111,
-                    keepalive: true
+					keepalive: true
 				}
 			}
 		},
 
 		'jasmine': {
-			src:  TEST_DEST + 'lib_compiled.js',
+			src: `${TEST_DEST}lib_compiled.js`,
 			options: {
-				specs: TEST_DEST + 'spec_compiled.js',
-				outfile: TEST_DEST + 'SpecRunner.html',
+				specs: `${TEST_DEST}spec_compiled.js`,
+				outfile: `${TEST_DEST}SpecRunner.html`,
 				keepRunner: true
 				// host: 'http://127.0.0.1:8000/'
 			}
@@ -100,13 +119,15 @@ module.exports = function(grunt) {
 					VERSION: '<%= package.version %>',
 					DESCRIPTION: '<%= package.description %>',
 					SQ2_URL: 'https://meetup.github.io/sassquatch2/bundle/sassquatch.css',
-					FONT_URL: 'https://secure.meetupstatic.com/fonts/graphik.css'
+					FONT_URL: 'https://secure.meetupstatic.com/fonts/graphik.css',
+					ANIMATION_CSS_PATH: `${DIST}/animation.css`,
+					ANIMATION_JS_PATH: `${DIST}/lib.js`
 				},
 			},
 			docs: {
 				files: {
 					// doc.html seldon --> index.html
-					'docs/dest/index.html': DOCS_DEST + 'doc.html'
+					'docs/dest/index.html': `${DOCS_DEST}doc.html`
 				}
 			}
 		},
@@ -132,11 +153,11 @@ module.exports = function(grunt) {
 	});
 
 	// TODO grunt copy for js, lint, uglify?
-	grunt.registerTask('compile', ['clean', 'sass', 'webpack']);
+	grunt.registerTask('compile', ['clean', 'sass', 'webpack:dist']);
 	grunt.registerTask('default', ['compile']);
 	grunt.registerTask('_docs', [ 'compile', 'exec:seldon', 'preprocess']);
 	grunt.registerTask('local-docs', [ '_docs', 'connect:docs']);
 	grunt.registerTask('docs', ['_docs', 'gh-pages']);
-	grunt.registerTask('test', ['clean:test', 'webpack', 'jasmine', 'connect:jasmine_site:keepalive']);
+	grunt.registerTask('test', ['clean:test', 'webpack:test', 'jasmine', 'connect:jasmine_site:keepalive']);
 	grunt.registerTask('travis', ['clean:test', 'webpack', 'jasmine']);
 };
