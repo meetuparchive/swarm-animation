@@ -11,12 +11,16 @@ http://meetup.github.io/swarm-animation/
   `grunt` or `grunt compile` builds the sass. `dist/animation.css` is then available for use in your project.   
   `grunt docs` compiles the sass and builds the docs for the `gh-pages` branch.
 
-### Building docs
-  `grunt docs-local` compiles the sass and builds the docs with jekyll  
+## Documentation
+
+### building docs
+  `grunt docs-local` compiles the sass and builds the docs with seldon 
    you should then be able to open your browser to preview the docs
 
   `grunt docs` compiles the sass and builds the docs for the `gh-pages` branch *and pushes*
  
+### adding docs
+
 ## Development
 ### css
    The sass files live in the root of `src/` for now.  
@@ -35,7 +39,8 @@ http://meetup.github.io/swarm-animation/
 ## Testing
   We need test coverage for all of our js animation helpers.   
   Travis CI runs these jasmine tests for the repo.  
-  
+  Tests live under `test/js` 
+
 ### running
   In development, use `grunt test` to run the tests.  
   This command calls `webpack` and `jasmine` and compiles `src/js/lib.js` (where you add your new functions) and turns it into `test/build/lib_compiled.js`.  
