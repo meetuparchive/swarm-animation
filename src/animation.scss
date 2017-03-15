@@ -1,9 +1,16 @@
 @import "../node_modules/bourbon/app/assets/stylesheets/_bourbon.scss";
 @import "constants";
 
+// Test code to illustrate documentation
+
 @keyframes fade--in {
     0% { opacity: 0; }
     100% { opacity: 1; }
+}
+
+@keyframes fade--out {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 .anim-fade--in {
@@ -11,27 +18,36 @@
 	@include animation-iteration-count(1);
 }
 
-.transparent {
+.anim-fade--out {
+	@include animation(fade--out $duration-m ease-out);
+	@include animation-iteration-count(1);
+}
+
+.anim-opacity--0 {
     opacity:0;
 }
 
 /*doc
 ---
-title: My Component Title
-name: myUniqueComponentName
-category: My Category Name
+title: Fade Animations (Test)
+name: .anim-fade--in
+category: Basic Animations
 ---
 
-**Any** _markdown_ you want can go here.
-Github-flavored markdown supported.
+
+**Note** This is just to illustrate documentation right now.  
+_Fade animations will change in another branch._ 
 
 ```html_example
-<p>This is a special fenced code block that does neat things:<p>
-<ol>
-    <li>Put example code here<li>
-    <li>It will be rendered directly to static documentation<li>
-    <li>Escaped html will appear under the example<li>
-<ol>
+
+<p>Example fade animation:</p>
+
+<div class='animateEl'></div>
+
+<div class='animateEl anim-opacity--0 anim-fade--in'></div>
+
+<a href='#' id='fadeOutLink'>Fade me out</a>
+
 ```
 */
 
