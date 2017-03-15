@@ -1,15 +1,13 @@
 import $ from 'jquery';
+import swarmAnimation from '../../../src/js/lib';
 
 $(function() {
-	const x = $(document.body);
-
-	alert(x);
+	// animation fade example
+	$('#fadeOutLink').on('click', function() {
+		swarmAnimation.hide(document.querySelector('.animateEl'));
+	});
 });
 
-
-
-/* import $ from 'jquery'; */
-// import swarmAnimation from 'js/lib.js';
 
 // $(function() {
 	// // Highlightjs - fancy tables parsed from markdown
@@ -41,12 +39,6 @@ $(function() {
 		// });
 	// }
 
-	// // animation fade example
-	// // TODO move to own partial
-	// $('#fadeOutLink').on('click', function() {
-		// debugger
-		// swarmAnimation.hide($('.animateEl'));
-	// });
 
 // });
 
