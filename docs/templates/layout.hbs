@@ -11,13 +11,15 @@
 	<link rel="stylesheet" href="<!-- @echo FONT_URL -->">
 	<link rel="stylesheet" href="<!-- @echo SQ2_URL -->">
 
-	<!-- CSS to be documented -->
-	<link rel="stylesheet" href="<!-- CSS_PATH -->">
+	<!-- swarm animation CSS to be documented -->
+	<link rel="stylesheet" href="<!-- @echo ANIMATION_CSS_PATH -->">
+	<link rel="stylesheet" href="<!-- @echo DOCS_CSS_PATH -->">
 
 	<!-- Styleguide CSS -->
+	<!--
 	<link rel="stylesheet" href="./pushy.css">
-	<link rel="stylesheet" href="./doc.css">
 	<link rel="stylesheet" href="./hljs.css">
+	-->
 </head>
 
 <!--[if IE 8]> <body class="lang_en ieRoot_IE8 ieRoot_lt_IE9 ieRoot_lt_IE10"> <![endif]-->
@@ -25,6 +27,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <body class="lang_en ieRoot_modern"> <!--<![endif]-->
 
 <nav class="stripe stripe--black pushy pushy-left">
+
 	<ul class="pushy-content">
 		{{#each categoryObj}}
 			<li class="pushy-submenu">
@@ -39,6 +42,7 @@
 			</li>
 		{{/each}}
 	</ul>
+
 </nav>
 
 <div class="column">
@@ -50,7 +54,7 @@
 					<a class="menu-btn text--big">&#9776;</a>
 				</div>
 			</div>
-			<h1 class="row-item chunk text--big">swarm-sasstools</h1>
+			<h1 class="row-item chunk text--big">swarm-animation</h1>
 			<!-- @echo DESCRIPTION -->
 			<a href="<!-- @echo GITHUB_URL -->" class="row-item row-item--shrink chunk text--big"><!-- @echo VERSION --></a>
 		</div>
@@ -64,13 +68,17 @@
 				{{! categories }}
 				{{#each categoryObj}}
 				<div class="doc_category">
-					<h2 class="doc_category-title text--heavy text--display1"><a class="offsetAnchor" name="{{this.name}}">{{this.title}}</a></h2>
+					<h2 class="doc_category-title text--heavy text--display1">
+						<a class="offsetAnchor" name="{{this.name}}">{{this.title}}</a>
+					</h2>
 
 					{{! category-level blocks }}
 					<div class="doc_category-blocks">
 						{{#each this.blocks}}
 						<dl class="doc_block">
-							<dt class="doc_block-title text--bold"><a class="offsetAnchor" name="{{this.name}}">{{this.title}}</a><dt>
+							<dt class="doc_block-title text--bold">
+								<a class="offsetAnchor" name="{{this.name}}">{{this.title}}</a>
+							</dt>
 							<dd class="doc_block-desc">{{{this.description}}}</dd>
 
 							{{! block children }}
@@ -98,47 +106,11 @@
 
 <script type="text/javascript" src="//code.jquery.com/jquery-2.1.3.min.js"></script>
 <script src="//cdn.jsdelivr.net/highlight.js/9.1.0/highlight.min.js"></script>
+<!-- swarm-animation js -->
+<script src="<!-- @echo ANIMATION_JS_PATH -->"></script>
+<script src="<!-- @echo DOCS_JS_PATH -->"></script>
+
 <script src="./pushy.min.js"></script>
-<script type="text/javascript">
-$(function() {
-	//
-	// Highlightjs,
-	// fancy tables parsed from markdown
-	//
-	$(document).ready(function() {
-		$('pre code').each(function(i, block) {
-			hljs.highlightBlock(block);
-		});
-		$('.doc_block-desc > table').addClass('stripedTable');
-	});
-
-
-	//
-	// Disable links without real href
-	//
-	$('a').on("click", function(e) {
-		if ( this.getAttribute("href") == "#" || $(this).hasClass('noFollow') ) {
-			e.preventDefault();
-		}
-		return;
-	});
-
-	//
-	// collapsible example
-	//
-	var $c = $('#cContainer'),
-		CLASS_COL_CLOSE = 'collapsible--close';
-	if ( $c.length > 0 ) {
-		$('#cTrigger').on('click', function() {
-			if ( $c.hasClass(CLASS_COL_CLOSE) ) {
-				$c.removeClass(CLASS_COL_CLOSE);
-			} else {
-				$c.addClass(CLASS_COL_CLOSE);
-			}
-		});
-	}
-});
-</script>
 
 </body>
 </html>

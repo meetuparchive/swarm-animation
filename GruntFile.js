@@ -27,17 +27,19 @@ module.exports = function(grunt) {
 			dist: {
 				files: {
 					'dist/animation.css': 'src/animation.scss',
-					// for docs
-					'docs/dest/css/animation.css': `${DOCS_SRC}css/animation.scss`,
-					'docs/dest/css/doc_styles.css': `${DOCS_SRC}css/doc_styles.scss`,
+					// css for docs
+					[`${DOCS_DEST}css/animation.css`]: `${SRC}animation.scss`,
+					[`${DOCS_DEST}css/doc_styles.css`]: `${DOCS_SRC}css/doc_styles.scss`
 				}
 			}
 		},
 
 		'webpack': {
+			// use babel loader to turn es6 to js for
+			// test/build dir
+
+			// build lib.js for distribution
 			dist: {
-				// use babel loader to turn es6 to js for
-				// test/build dir
 				entry: `./${SRC}js/lib.js`,
 				output: {
 					path: `./${DIST}`,
@@ -51,11 +53,35 @@ module.exports = function(grunt) {
 					}]
 				}
 			},
-			// TODO, make test use compiled lib from main
-			// so not to recompile
+			// build js for docs: lib + docs.js into docs/dest
+			docs: {
+				entry: {
+					lib: [`./${SRC}js/lib.js`],
+					site_docs: `./${DOCS_SRC}js/docs.js`
+				},
+				output: {
+					path: `./${DOCS_DEST}js`,
+					filename: '[name].js'
+				},
+				stats: {
+					errorDetails: true
+				},
+				module: {
+					loaders: [{
+						test: /\.js$/,
+						exclude: /node_modules/,
+						loader: 'babel-loader'
+					}]
+				},
+				externals: {
+					jquery: 'jQuery'
+				}
+			},
+
+			// TODO, make test just use compiled lib from main
+			// so not to recompile, maybe just copy ??
 			test: {
-				// use babel loader to turn es6 to js for
-				// test/build dir
+				// compile js for test: lib + spec
 				entry: {
 					lib: ['./src/js/lib.js'],
 					spec: './test/js/DummySpec.js',
@@ -120,8 +146,10 @@ module.exports = function(grunt) {
 					DESCRIPTION: '<%= package.description %>',
 					SQ2_URL: 'https://meetup.github.io/sassquatch2/bundle/sassquatch.css',
 					FONT_URL: 'https://secure.meetupstatic.com/fonts/graphik.css',
-					ANIMATION_CSS_PATH: `${DIST}/animation.css`,
-					ANIMATION_JS_PATH: `${DIST}/lib.js`
+					ANIMATION_CSS_PATH: 'css/animation.css',
+					DOCS_CSS_PATH: 'css/doc_styles.css',
+					ANIMATION_JS_PATH: 'js/lib.js',
+					DOCS_JS_PATH: 'js/site_docs.js'
 				},
 			},
 			docs: {
@@ -155,7 +183,7 @@ module.exports = function(grunt) {
 	// TODO grunt copy for js, lint, uglify?
 	grunt.registerTask('compile', ['clean', 'sass', 'webpack:dist']);
 	grunt.registerTask('default', ['compile']);
-	grunt.registerTask('_docs', [ 'compile', 'exec:seldon', 'preprocess']);
+	grunt.registerTask('_docs', [ 'compile', 'webpack:docs', 'exec:seldon', 'preprocess']);
 	grunt.registerTask('local-docs', [ '_docs', 'connect:docs']);
 	grunt.registerTask('docs', ['_docs', 'gh-pages']);
 	grunt.registerTask('test', ['clean:test', 'webpack:test', 'jasmine', 'connect:jasmine_site:keepalive']);
