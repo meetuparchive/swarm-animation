@@ -18,7 +18,7 @@ module.exports = function(grunt) {
 		'package': grunt.file.readJSON('package.json'),
 
 		'clean': {
-			css: ['dist/*.css', 'docs/processed'],
+			css: ['dist/*.css', 'docs/dest'],
 			test : ['test/build'],
 			js: ['dist/*.js']
 		},
@@ -29,8 +29,17 @@ module.exports = function(grunt) {
 					'dist/animation.css': 'src/animation.scss',
 					// css for docs
 					[`${DOCS_DEST}css/animation.css`]: `${SRC}animation.scss`,
-					[`${DOCS_DEST}css/doc_styles.css`]: `${DOCS_SRC}css/doc_styles.scss`
+					[`${DOCS_DEST}css/doc_styles.css`]: `${DOCS_SRC}css/doc_styles.scss`,
 				}
+			}
+		},
+
+		'copy': {
+			docs: {
+				expand: true,
+				cwd: `${DOCS_SRC}assets/`,
+				src: '*.*',
+				dest: `${DOCS_DEST}assets/`
 			}
 		},
 
@@ -183,7 +192,7 @@ module.exports = function(grunt) {
 	// TODO grunt copy for js, lint, uglify?
 	grunt.registerTask('compile', ['clean', 'sass', 'webpack:dist']);
 	grunt.registerTask('default', ['compile']);
-	grunt.registerTask('_docs', [ 'compile', 'webpack:docs', 'exec:seldon', 'preprocess']);
+	grunt.registerTask('_docs', [ 'compile', 'webpack:docs', 'copy:docs', 'exec:seldon', 'preprocess']);
 	grunt.registerTask('local-docs', [ '_docs', 'connect:docs']);
 	grunt.registerTask('docs', ['_docs', 'gh-pages']);
 	grunt.registerTask('test', ['clean:test', 'webpack:test', 'jasmine', 'connect:jasmine_site:keepalive']);
