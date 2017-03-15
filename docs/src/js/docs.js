@@ -33,19 +33,5 @@ $(function() {
 		// return;
 	// });
 
-	// // collapsible example
-	// const $c = $('#cContainer'),
-		// CLASS_COL_CLOSE = 'collapsible--close';
-	// if ($c.length > 0) {
-		// $('#cTrigger').on('click', function() {
-			// if ($c.hasClass(CLASS_COL_CLOSE) ) {
-				// $c.removeClass(CLASS_COL_CLOSE);
-			// } else {
-				// $c.addClass(CLASS_COL_CLOSE);
-			// }
-		// });
-	// }
-
-
 // });
 

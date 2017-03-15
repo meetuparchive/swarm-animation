@@ -38,15 +38,18 @@ category: Basic Animations
 **Note** This is just to illustrate documentation right now.  
 _Fade animations will change in another branch._ 
 
+Example fade animations:
+
 ```html_example
-
-<p>Example fade animation:</p>
-
 <div class='animateEl'></div>
+<a href='#' id='fadeOutLink'>Fade me out</a>
 
 <div class='animateEl anim-opacity--0 anim-fade--in'></div>
 
-<a href='#' id='fadeOutLink'>Fade me out</a>
+$('#fadeOutLink').on('click', function(e) {
+	e.preventDefault();
+	swarmAnimation.hide(document.querySelector('.animateEl'));
+});
 
 ```
 */
