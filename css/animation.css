@@ -1,0 +1,79 @@
+/*
+* @author ivy
+* @module fade
+* @description anything to do with opacity/transparency
+* @note : this is just test code. feel free to change, I made it to illustrate 
+* how the documentation and project might work
+*/
+@keyframes fade--in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes fade--out {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+
+.anim-fade--in {
+  -webkit-animation: fade--in 0.5s ease-in;
+  -moz-animation: fade--in 0.5s ease-in;
+  animation: fade--in 0.5s ease-in;
+  -webkit-animation-iteration-count: 1;
+  -moz-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards; }
+
+.anim-fade--out {
+  -webkit-animation: fade--out 0.5s ease-out;
+  -moz-animation: fade--out 0.5s ease-out;
+  animation: fade--out 0.5s ease-out;
+  -webkit-animation-iteration-count: 1;
+  -moz-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards; }
+
+.anim-opacity--0 {
+  opacity: 0; }
+
+.anim-opacity--1 {
+  opacity: 1; }
+
+/*doc
+---
+title: Fade Animations (Test)
+name: .anim-fade--in
+category: Basic Animations
+---
+
+**Note** This is just to illustrate documentation right now.  
+_Fade animations will change in another branch._ 
+
+Example fade animations:
+
+```html_example
+<div class='row'>
+	<div class='row-item'>
+		<div class='boxEl'></div>
+		<a href='#' id='fadeOutLink' class='link'>Fade me out</a>
+	</div>
+	<div class='row-item'>
+		<div class='boxEl anim-opacity--0 anim-fade--in'></div>
+		Fading in...
+	</div>
+</div>
+```
+
+```js
+$('#fadeOutLink').on('click', function(e) {
+	e.preventDefault();
+	swarmAnimation.hide(document.querySelector('.boxEl'));
+});
+```
+*/
