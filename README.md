@@ -54,7 +54,8 @@ Javascript utilities for applying and removing css classes in a standard way wil
 
   A server is run and kept alive.  
   You can navigate to `http://localhost:8888/test/build/SpecRunner.html` to see the output (also shown on command line).  
-  **Changes to the test spec are watched and recompiled**
+  
+  _Changes to the test spec are watched and recompiled_
 
 
 ## Documentation
@@ -70,6 +71,8 @@ Javascript utilities for applying and removing css classes in a standard way wil
    You should then be able to open your browser to preview the docs at `localhost:8888`.
 
   `grunt docs` compiles the sass and builds the docs for the `gh-pages` branch *and pushes*
+ 
+   _Changes to the docs are watched and recompiled_
  
 ### adding docs
 
