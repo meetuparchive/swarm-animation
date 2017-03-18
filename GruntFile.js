@@ -128,7 +128,7 @@ module.exports = function(grunt) {
 					},
 					port: 8111,
 					// keepalive: true,
-					livereload: true
+					// livereload: true
 				}
 			}
 		},
