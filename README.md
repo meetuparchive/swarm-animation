@@ -8,7 +8,7 @@ Broadly, swarm-animation's purpose is to provide reusable and performant animati
 The vision is, for example, if we want an animation for a popover to show and hide, we already have CSS classes and a javascript function to apply these.
 
 The focus of the project is on providing CSS animations.  
-There is need for animations applied with JS as well, esp if we can get them to be more performant using methods like (FLIP)[https://medium.com/outsystems-experts/flip-your-60-fps-animations-flip-em-good-372281598865#.m076uxhcv].  
+There is need for animations applied with JS as well, esp if we can get them to be more performant using methods like [FLIP](https://medium.com/outsystems-experts/flip-your-60-fps-animations-flip-em-good-372281598865#.m076uxhcv).  
 Javascript utilities for applying and removing css classes in a standard way will also be provided.
 
 ### What about React?
@@ -21,14 +21,15 @@ Javascript utilities for applying and removing css classes in a standard way wil
 1. from inside the repo directory, run `yarn install`
 
 ## Building the project
-  `grunt` or `grunt compile` builds the sass. `dist/animation.css` and `dist/swarmAnimation.js` are then available for use in your project. 
+  `grunt` or `grunt compile` builds the sass.
+  `dist/animation.css` and `dist/swarmAnimation.js` are then available for use in your project.  
 
   `grunt test` compiles the test js and starts a webserver at `localhost:8888`.
-  More about tests in the testing section.
+  More about tests in the [Testing](#testing) section.
 
   `grunt docs` compiles the sass and builds the docs for the `gh-pages` branch.
-  `grunt local-docs` compiles the sass and builds the docs, but does not push to `gh-pages`. It starts a webserver locally.
-  More about docs in the Documentation section.
+  `grunt local-docs` compiles the sass and builds the docs, but does not push to `gh-pages`. It starts a webserver at `localhost:8111`.
+  More about docs in the [Documentation](#documentation) section.
 
 ## Development
 ### css
@@ -37,36 +38,44 @@ Javascript utilities for applying and removing css classes in a standard way wil
    Future partials can be made for opacity, loaders, entering/leaving, scale, for example.  
 
 ### js
-   The `src/js/swarmAnimation.js` file will contain javascript functions that you can use in your js to run certain animations/apply css based on user interaction.  
+   The `src/js/swarmAnimation.js` file contains javascript functions that you can use in your js to run certain animations/apply css based on user interaction.  
    Add to this file if you want to add javascript that should apply classes on click, change, load, etc.  
-   Anything added will need to be tested. See (Testing)  
+   Anything added will need to be tested. See [Testing](#testing).
 
 ## Testing
   We need test coverage for all of our js animation helpers.   
   Travis CI runs these jasmine tests for the repo.  
-  Tests live under `test/js` 
+  Test specs live under `test/specs`. Write your specs in Jasmine, using es6, here.
 
 ### running
   In development, use `grunt test` to run the tests.  
-  This command calls `webpack` and `jasmine` and compiles `src/js/swarmAnimation.js` with babel (into `test/build/swarmAnimation_test.js`).  
-  It also uses babel to create `test/build/spec_test.js` out of your specs. So please use es6 when writing javascript.  
+  This command calls `compile` and copies over compiled js and css to the test directory.
+  It also calls `webpack:test` to use babel to create `test/build/spec_test.js` out of your specs.
 
   A server is run and kept alive.  
-  You can navigate to `http://localhost:8888/test/build/SpecRunner.html` to see the output (also shown on command line).
+  You can navigate to `http://localhost:8888/test/build/SpecRunner.html` to see the output (also shown on command line).  
+  **Changes to the test spec are watched and recompiled**
 
-### writing
-  Test code lives in `test/js`. Write your specs in Jasmine, using es6, here.
 
 ## Documentation
 
+   The docs can be seen locally or here https://meetup.github.io/swarm-animation/.
+   We use [highlightjs](https://highlightjs.org/) and [pushy](https://www.christopheryee.ca/pushy/) to provide code colors and a side menu, respectively.
+
 ### building docs
-  `grunt local-docs` compiles the sass and builds the docs with (seldon)[https://github.com/meetup/seldon]
-   you should then be able to open your browser to preview the docs
+   `docs/src` has the `assets`, `css` and `js` for the documentation.
+   `swarmAnimation` css and js are moved into `docs/dest` along with `src` files with the build task.
+   
+  `grunt local-docs` compiles the sass, js and builds the docs with (seldon)[https://github.com/meetup/seldon]
+   You should then be able to open your browser to preview the docs at `localhost:8888`.
 
   `grunt docs` compiles the sass and builds the docs for the `gh-pages` branch *and pushes*
  
 ### adding docs
-=======
+
+   Documentation is added by including doc comments in your scsss (See `src/_fade.scss` for examples)
+   This is still a work in progress.
+   
 ---
 
 ## Animation catalogue
