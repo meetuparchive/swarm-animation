@@ -9,11 +9,11 @@
 
 const swarmAnimation = {
 	hide(el) {
-		el.classList += ' anim-fade--out';
+		el.classList.add('anim-fade--out');
 	},
 
 	show(el) {
-		el.classList += ' anim-fade--in';
+		el.classList.remove('anim-fade--in');
 	},
 
 	addOneTest(x) {
