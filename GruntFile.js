@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 
 	const DOCS_SRC = 'docs/src/',
 		DOCS_DEST = 'docs/dest/',
-		TEST_DEST = 'test/build/',
+		TEST_DEST = 'test/dest/',
 		DIST = 'dist/',
 		SRC = 'src/';
 
@@ -19,7 +19,7 @@ module.exports = function(grunt) {
 
 		'clean': {
 			css: ['dist/*.css', 'docs/dest'],
-			test : ['test/build'],
+			test : ['test/dest'],
 			js: ['dist/*.js']
 		},
 
@@ -45,14 +45,14 @@ module.exports = function(grunt) {
 
 		'webpack': {
 			// use babel loader to turn es6 to js for
-			// test/build dir
+			// test/dest dir
 
-			// build lib.js for distribution
+			// build swarmAnimation.js for distribution
 			dist: {
-				entry: `./${SRC}js/lib.js`,
+				entry: `./${SRC}js/swarmAnimation.js`,
 				output: {
 					path: `./${DIST}`,
-					filename: 'lib.js'
+					filename: 'swarmAnimation.js'
 				},
 				module: {
 					loaders: [{
@@ -62,10 +62,10 @@ module.exports = function(grunt) {
 					}]
 				}
 			},
-			// build js for docs: lib + docs.js into docs/dest
+			// build js for docs: swarmAnimation + docs.js into docs/dest
 			docs: {
 				entry: {
-					lib: [`./${SRC}js/lib.js`],
+					swarmAnimation: [`./${SRC}js/swarmAnimation.js`],
 					site_docs: `./${DOCS_SRC}js/docs.js`
 				},
 				output: {
@@ -87,17 +87,17 @@ module.exports = function(grunt) {
 				}
 			},
 
-			// TODO, make test just use compiled lib from main
+			// TODO, make test just use compiled swarmAnimation from main
 			// so not to recompile, maybe just copy ??
 			test: {
-				// compile js for test: lib + spec
+				// compile js for test: swarmAnimation + spec
 				entry: {
-					lib: ['./src/js/lib.js'],
-					spec: './test/js/DummySpec.js',
+					swarmAnimation: ['./src/js/swarmAnimation.js'],
+					spec: './test/specs/DummySpec.js',
 				},
 				output: {
 					path: `./${TEST_DEST}`,
-					filename: '[name]_compiled.js'
+					filename: '[name]_test.js'
 				},
 				module: {
 					loaders: [{
@@ -115,12 +115,12 @@ module.exports = function(grunt) {
 			jasmine_site: {
 				options: {
 					base: {
-						path: './test/build',
+						path: `./${TEST_DEST}`,
 						options: {
-							index: './test/build/SpecRunner.html'
+							index: `./${TEST_DEST}SpecRunner.html`
 						}
 					},
-					port: 8888
+					port: 8888,
 				}
 			},
 			docs: {
@@ -138,10 +138,11 @@ module.exports = function(grunt) {
 		},
 
 		'jasmine': {
-			src: `${TEST_DEST}lib_compiled.js`,
+			src: `${TEST_DEST}swarmAnimation_test.js`,
 			options: {
-				specs: `${TEST_DEST}spec_compiled.js`,
+				specs: `${TEST_DEST}spec_test.js`,
 				outfile: `${TEST_DEST}SpecRunner.html`,
+				tempDir: `${TEST_DEST}/jasmine`,
 				keepRunner: true
 				// host: 'http://127.0.0.1:8000/'
 			}
@@ -157,7 +158,7 @@ module.exports = function(grunt) {
 					FONT_URL: 'https://secure.meetupstatic.com/fonts/graphik.css',
 					ANIMATION_CSS_PATH: 'css/animation.css',
 					DOCS_CSS_PATH: 'css/doc_styles.css',
-					ANIMATION_JS_PATH: 'js/lib.js',
+					ANIMATION_JS_PATH: 'js/swarmAnimation.js',
 					DOCS_JS_PATH: 'js/site_docs.js'
 				},
 			},

@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import swarmAnimation from '../../../src/js/lib';
+import swarmAnimation from '../../../src/js/swarmAnimation';
 
 
 /**

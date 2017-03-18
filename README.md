@@ -3,7 +3,7 @@ Reusable animation CSS and js for web, React friendly
 http://meetup.github.io/swarm-animation/
 
 ## Goals
-Broadly - to provide reusable and performant animations to be used on web.
+Broadly, swarm-animation's purpose is to provide reusable and performant animations to be used on web.
 
 The vision is, for example, if we want an animation for a popover to show and hide, we already have CSS classes and a javascript function to apply these.
 
@@ -21,17 +21,23 @@ Javascript utilities for applying and removing css classes in a standard way wil
 1. from inside the repo directory, run `yarn install`
 
 ## Building the project
-  `grunt` or `grunt compile` builds the sass. `dist/animation.css` is then available for use in your project.   
+  `grunt` or `grunt compile` builds the sass. `dist/animation.css` and `dist/swarmAnimation.js` are then available for use in your project. 
+
+  `grunt test` compiles the test js and starts a webserver at `localhost:8888`.
+  More about tests in the testing section.
+
   `grunt docs` compiles the sass and builds the docs for the `gh-pages` branch.
+  `grunt local-docs` compiles the sass and builds the docs, but does not push to `gh-pages`. It starts a webserver locally.
+  More about docs in the Documentation section.
 
 ## Development
 ### css
    The sass files live in the root of `src/` for now.  
    `animation.scss` imports sass partials for different responsibilities as the project grows.  
-   Future partials will be made for opacity, loaders, entering/leaving, scale, transorm for example.  
+   Future partials can be made for opacity, loaders, entering/leaving, scale, for example.  
 
 ### js
-   The `src/js/lib.js` file will contain javascript functions that you can use in your js to run certain animations/apply css based on user interaction.  
+   The `src/js/swarmAnimation.js` file will contain javascript functions that you can use in your js to run certain animations/apply css based on user interaction.  
    Add to this file if you want to add javascript that should apply classes on click, change, load, etc.  
    Anything added will need to be tested. See (Testing)  
 
@@ -42,9 +48,11 @@ Javascript utilities for applying and removing css classes in a standard way wil
 
 ### running
   In development, use `grunt test` to run the tests.  
-  This command calls `webpack` and `jasmine` and compiles `src/js/lib.js` (where you add your new functions) and turns it into `test/build/lib_compiled.js`.  
-  It also creates `test/build/spec_compiled.js` out of your specs.  
-  It runs a server with `connect` and keeps it alive. You can navigate to `http://localhost:8888/test/build/SpecRunner.html` to see the output (also shown on command line).
+  This command calls `webpack` and `jasmine` and compiles `src/js/swarmAnimation.js` with babel (into `test/build/swarmAnimation_test.js`).  
+  It also uses babel to create `test/build/spec_test.js` out of your specs. So please use es6 when writing javascript.  
+
+  A server is run and kept alive.  
+  You can navigate to `http://localhost:8888/test/build/SpecRunner.html` to see the output (also shown on command line).
 
 ### writing
   Test code lives in `test/js`. Write your specs in Jasmine, using es6, here.
@@ -52,7 +60,7 @@ Javascript utilities for applying and removing css classes in a standard way wil
 ## Documentation
 
 ### building docs
-  `grunt docs-local` compiles the sass and builds the docs with seldon 
+  `grunt local-docs` compiles the sass and builds the docs with (seldon)[https://github.com/meetup/seldon]
    you should then be able to open your browser to preview the docs
 
   `grunt docs` compiles the sass and builds the docs for the `gh-pages` branch *and pushes*
