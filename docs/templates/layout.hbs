@@ -1,3 +1,10 @@
+<!--
+	this file is the master template,, used to render the documentation
+	page. the css, js assets and version are all layed in by a preprocess task
+	after seldon processes the template. categories etc
+	See: github.com/meetup/seldon
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,13 +20,12 @@
 
 	<!-- swarm animation CSS to be documented -->
 	<link rel="stylesheet" href="<!-- @echo ANIMATION_CSS_PATH -->">
-	<link rel="stylesheet" href="<!-- @echo DOCS_CSS_PATH -->">
-
+	
+	
 	<!-- Styleguide CSS -->
+	<link rel="stylesheet" href="<!-- @echo DOCS_CSS_PATH -->">
 	<link rel="stylesheet" href="assets/pushy.css">
-	<!--
-	<link rel="stylesheet" href="./hljs.css">
-	-->
+	<link rel="stylesheet" href="assets/highlightjs_default.css">
 </head>
 
 <!--[if IE 8]> <body class="lang_en ieRoot_IE8 ieRoot_lt_IE9 ieRoot_lt_IE10"> <![endif]-->
@@ -27,7 +33,6 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <body class="lang_en ieRoot_modern"> <!--<![endif]-->
 
 <nav class="stripe stripe--black pushy pushy-left">
-
 	<ul class="pushy-content">
 		{{#each categoryObj}}
 			<li class="pushy-submenu">
@@ -42,7 +47,6 @@
 			</li>
 		{{/each}}
 	</ul>
-
 </nav>
 
 <div class="column">
@@ -106,6 +110,7 @@
 
 <script type="text/javascript" src="//code.jquery.com/jquery-2.1.3.min.js"></script>
 <script src="//cdn.jsdelivr.net/highlight.js/9.1.0/highlight.min.js"></script>
+
 <!-- swarm-animation js -->
 <script src="<!-- @echo ANIMATION_JS_PATH -->"></script>
 <script src="<!-- @echo DOCS_JS_PATH -->"></script>
