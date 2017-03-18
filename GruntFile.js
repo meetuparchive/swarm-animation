@@ -8,11 +8,6 @@ module.exports = function(grunt) {
 		DIST = 'dist/',
 		SRC = 'src/';
 
-	const WATCH_PATHS = [
-		'docs/templates/**/*.*',
-		'src/*.scss',
-		'src/js/*.js'
-	];
 
 	grunt.initConfig({
 		'package': grunt.file.readJSON('package.json'),
@@ -132,7 +127,8 @@ module.exports = function(grunt) {
 						}
 					},
 					port: 8111,
-					keepalive: true
+					// keepalive: true,
+					livereload: true
 				}
 			}
 		},
@@ -185,8 +181,13 @@ module.exports = function(grunt) {
 		},
 
 		'watch': {
-			files: WATCH_PATHS,
-			tasks: ['local-docs']
+			files: [
+				'docs/templates/*.*',
+				'docs/src/**/*.*',
+				'src/*.scss',
+				'src/js/*.js'
+			],
+			tasks: ['_docs']
 		},
 	});
 
@@ -194,7 +195,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('compile', ['clean', 'sass', 'webpack:dist']);
 	grunt.registerTask('default', ['compile']);
 	grunt.registerTask('_docs', [ 'compile', 'webpack:docs', 'copy:docs', 'exec:seldon', 'preprocess']);
-	grunt.registerTask('local-docs', [ '_docs', 'connect:docs']);
+	grunt.registerTask('local-docs', [ '_docs', 'connect:docs', 'watch']);
 	grunt.registerTask('docs', ['_docs', 'gh-pages']);
 	grunt.registerTask('test', ['clean:test', 'webpack:test', 'jasmine', 'connect:jasmine_site:keepalive']);
 	grunt.registerTask('travis', ['clean:test', 'webpack', 'jasmine']);
