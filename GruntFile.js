@@ -35,6 +35,12 @@ module.exports = function(grunt) {
 				cwd: `${DOCS_SRC}assets/`,
 				src: '*.*',
 				dest: `${DOCS_DEST}assets/`
+			},
+			test: {
+				expand: true,
+				cwd: `${DIST}`,
+				src: '*.*',
+				dest: `${TEST_DEST}`
 			}
 		},
 
@@ -87,8 +93,7 @@ module.exports = function(grunt) {
 			test: {
 				// compile js for test: swarmAnimation + spec
 				entry: {
-					swarmAnimation: ['./src/js/swarmAnimation.js'],
-					spec: './test/specs/DummySpec.js',
+					spec: './test/specs/initial_spec.js',
 				},
 				output: {
 					path: `./${TEST_DEST}`,
@@ -126,18 +131,17 @@ module.exports = function(grunt) {
 							index: 'index.html'
 						}
 					},
-					port: 8111,
-					// keepalive: true,
-					// livereload: true
+					port: 8111
 				}
 			}
 		},
 
 		'jasmine': {
-			src: `${TEST_DEST}swarmAnimation_test.js`,
+			src: `${TEST_DEST}swarmAnimation.js`,
 			options: {
 				specs: `${TEST_DEST}spec_test.js`,
 				outfile: `${TEST_DEST}SpecRunner.html`,
+				styles: `${TEST_DEST}animation.css`,
 				tempDir: `${TEST_DEST}/jasmine`,
 				keepRunner: true
 				// host: 'http://127.0.0.1:8000/'
@@ -181,22 +185,29 @@ module.exports = function(grunt) {
 		},
 
 		'watch': {
-			files: [
-				'docs/templates/*.*',
-				'docs/src/**/*.*',
-				'src/*.scss',
-				'src/js/*.js'
-			],
-			tasks: ['_docs']
+			docs: {
+				files: [
+					'docs/templates/*.*',
+					'docs/src/**/*.*',
+					'src/*.scss',
+					'src/js/*.js'
+				],
+				tasks: ['_docs_compile']
+			},
+			test: {
+				files: ['test/specs/*.*'],
+				tasks: ['_test_compile', 'jasmine']
+			}
 		},
 	});
 
 	// TODO grunt copy for js, lint, uglify?
 	grunt.registerTask('compile', ['clean', 'sass', 'webpack:dist']);
 	grunt.registerTask('default', ['compile']);
-	grunt.registerTask('_docs', [ 'compile', 'webpack:docs', 'copy:docs', 'exec:seldon', 'preprocess']);
-	grunt.registerTask('local-docs', [ '_docs', 'connect:docs', 'watch']);
+	grunt.registerTask('_docs_compile', [ 'compile', 'webpack:docs', 'copy:docs', 'exec:seldon', 'preprocess']);
+	grunt.registerTask('local-docs', [ '_docs_compile', 'connect:docs', 'watch:docs']);
 	grunt.registerTask('docs', ['_docs', 'gh-pages']);
-	grunt.registerTask('test', ['clean:test', 'webpack:test', 'jasmine', 'connect:jasmine_site:keepalive']);
+	grunt.registerTask('_test_compile', ['clean:test', 'compile', 'webpack:test', 'copy:test']);
+	grunt.registerTask('test', ['_test_compile', 'connect:jasmine_site', 'jasmine', 'watch:test']);
 	grunt.registerTask('travis', ['clean:test', 'webpack', 'jasmine']);
 };
