@@ -11,27 +11,13 @@ $(function() {
 	// animation fade example
 	$('#fadeOutLink').on('click', function(e) {
 		e.preventDefault();
-		swarmAnimation.hide(document.querySelector('.animateEl'));
+		swarmAnimation.hide(document.querySelector('.boxEl'));
 	});
+
+	// Highlightjs - fancy tables parsed from markdown
+	$('pre code').each(function(i, block) {
+		hljs.highlightBlock(block);
+	});
+
 });
-
-
-// $(function() {
-	// // Highlightjs - fancy tables parsed from markdown
-	// [> $(document).ready(function() { <]
-		// // $('pre code').each(function(i, block) {
-			// // hljs.highlightBlock(block);
-		// // });
-		// // $('.doc_block-desc > table').addClass('stripedTable');
-	// // });
-
-	// // Disable links without real href
-	// $('a').on('click', function(e) {
-		// if (this.getAttribute('href') == '#' || $(this).hasClass('noFollow')) {
-			// e.preventDefault();
-		// }
-		// return;
-	// });
-
-// });
 
