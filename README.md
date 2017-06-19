@@ -84,12 +84,14 @@ Javascript utilities for applying and removing css classes in a standard way wil
 ## Animation catalogue
 
 A list of animations we should have:  
+
 fade / opacity (currently needed on landing page, maybe start flow)  
 expand /collapse (accordions, maybe modals)  
 loading animations  
 add/remove (lists of events, attendees)  
 
 ---
-For resources an darticles on animation - check out the (wiki)[https://github.com/meetup/swarm-animation/wiki/Animation-Resources-&-Articles]
+
+For resources and articles on animation - check out the [wiki](https://github.com/meetup/swarm-animation/wiki/Animation-Resources-&-Articles)
 
 
