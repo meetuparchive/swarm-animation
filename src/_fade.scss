@@ -36,6 +36,11 @@
     opacity:1;
 }
 
+// for popover example
+.anim-opacity--short {
+    transition: opacity $duration-s ease-in-out;
+}
+
 /*doc
 ---
 title: Fade Animations (Test)
