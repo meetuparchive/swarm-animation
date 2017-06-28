@@ -7,17 +7,23 @@
 */
 
 @keyframes fade--in {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+	0% { opacity: 0; }
+	100% { opacity: 1; }
 }
 
 @keyframes fade--out {
-    0% { opacity: 1; }
-    100% { opacity: 0; }
+	0% { opacity: 1; }
+	100% { opacity: 0; }
 }
 
 .anim-fade--in {
 	@include animation(fade--in $duration-m ease-in);
+	@include animation-iteration-count(1);
+	@include animation-fill-mode(forwards);
+}
+
+.anim-fade--in--short {
+	@include animation(fade--in $duration-s ease-in);
 	@include animation-iteration-count(1);
 	@include animation-fill-mode(forwards);
 }
@@ -28,17 +34,23 @@
 	@include animation-fill-mode(forwards);
 }
 
+.anim-fade--out--short {
+	@include animation(fade--out $duration-s ease-out);
+	@include animation-iteration-count(1);
+	@include animation-fill-mode(forwards);
+}
+
 .anim-opacity--0 {
-    opacity:0;
+	opacity:0;
 }
 
 .anim-opacity--1 {
-    opacity:1;
+	opacity:1;
 }
 
 // for popover example
 .anim-opacity--short {
-    transition: opacity $duration-s ease-in-out;
+	transition: opacity $duration-s ease-in-out;
 }
 
 /*doc
@@ -60,8 +72,12 @@ Example fade animations:
 		<a href='#' id='fadeOutLink' class='link'>Fade me out</a>
 	</div>
 	<div class='row-item'>
+		<div class='boxEl anim-opacity--0'></div>
+		<a href='#' id='fadeInLink' class='link'>Fade me in</a>
+	</div>
+	<div class='row-item'>
 		<div class='boxEl anim-opacity--0 anim-fade--in'></div>
-		Fading in...
+		Fading in on load...
 	</div>
 </div>
 ```
@@ -71,6 +87,12 @@ $('#fadeOutLink').on('click', function(e) {
 	e.preventDefault();
 	swarmAnimation.hide(document.querySelector('.boxEl'));
 });
+
+$('#fadeInLink').on('click', function(e) {
+	e.preventDefault();
+	swarmAnimation.show(document.querySelectorAll('.boxEl')[1]);
+});
+
 ```
 */
 
