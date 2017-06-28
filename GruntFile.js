@@ -143,6 +143,10 @@ module.exports = function(grunt) {
 				outfile: `${TEST_DEST}SpecRunner.html`,
 				styles: `${TEST_DEST}animation.css`,
 				tempDir: `${TEST_DEST}/jasmine`,
+				vendor: [
+					'node_modules/jquery/dist/jquery.min.js',
+					'node_modules/jasmine-jquery/lib/jasmine-jquery.js'
+				],
 				keepRunner: true
 				// host: 'http://127.0.0.1:8000/'
 			}
