@@ -6,6 +6,10 @@
 * how the documentation and project might work
 */
 
+
+/*
+	use keyframes fade for animation on page load
+*/
 @keyframes fade--in {
 	0% { opacity: 0; }
 	100% { opacity: 1; }
@@ -17,7 +21,8 @@
 }
 
 .anim-fade--in {
-	@include animation(fade--in $duration-m ease-in);
+	@include animation-delay(2s);
+	@include animation(fade--in $duration-l ease-in);
 	@include animation-iteration-count(1);
 	@include animation-fill-mode(forwards);
 }
@@ -40,6 +45,9 @@
 	@include animation-fill-mode(forwards);
 }
 
+/*
+	transitions for js, in response to events and user interaction
+*/
 .anim-opacity--0 {
 	opacity:0;
 }
@@ -48,9 +56,12 @@
 	opacity:1;
 }
 
-// for popover example
-.anim-opacity--short {
+.anim-transition--opacity--s {
 	transition: opacity $duration-s ease-in-out;
+}
+
+.anim-transition--opacity {
+	transition: opacity $duration-m ease-in-out;
 }
 
 /*doc

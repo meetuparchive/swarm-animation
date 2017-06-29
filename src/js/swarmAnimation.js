@@ -15,19 +15,19 @@ const DURATION_TYPE = {
 
 const swarmAnimation = {
 	hide(el, durationType) {
-		let className = 'anim-fade--out';
+		let transitionClass = 'anim-transition--opacity';
 		if (durationType) {
-			className = `${className}--${DURATION_TYPE[durationType]}`;
+			transitionClass = `${transitionClass}--${DURATION_TYPE[durationType]}`;
 		}
-		el.classList.add(className);
+		el.classList.add(transitionClass, 'anim-opacity--0');
 	},
 
 	show(el, durationType) {
-		let className = 'anim-fade--in';
+		let transitionClass = 'anim-transition--opacity';
 		if (durationType) {
-			className = `${className}--${DURATION_TYPE[durationType]}`;
+			transitionClass = `${transitionClass}--${DURATION_TYPE[durationType]}`;
 		}
-		el.classList.add(className);
+		el.classList.add(transitionClass, 'anim-opacity--1');
 	}
 };
 
