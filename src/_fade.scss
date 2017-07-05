@@ -21,28 +21,28 @@
 }
 
 .anim-fade--in {
-	@include animation-delay(2s);
-	@include animation(fade--in $duration-l ease-in);
-	@include animation-iteration-count(1);
-	@include animation-fill-mode(forwards);
+	animation-delay:2s;
+	animation:fade--in $duration-l ease-in;
+	animation-iteration-count:1;
+	animation-fill-mode:forwards;
 }
 
 .anim-fade--in--short {
-	@include animation(fade--in $duration-s ease-in);
-	@include animation-iteration-count(1);
-	@include animation-fill-mode(forwards);
+	animation:fade--in $duration-s ease-in;
+	animation-iteration-count:1;
+	animation-fill-mode:forwards;
 }
 
 .anim-fade--out {
-	@include animation(fade--out $duration-m ease-out);
-	@include animation-iteration-count(1);
-	@include animation-fill-mode(forwards);
+	animation:fade--out $duration-m ease-out;
+	animation-iteration-count:1;
+	animation-fill-mode:forwards;
 }
 
 .anim-fade--out--short {
-	@include animation(fade--out $duration-s ease-out);
-	@include animation-iteration-count(1);
-	@include animation-fill-mode(forwards);
+	animation:fade--out $duration-s ease-out;
+	animation-iteration-count:1;
+	animation-fill-mode:forwards;
 }
 
 /*

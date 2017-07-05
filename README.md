@@ -68,7 +68,7 @@ Javascript utilities for applying and removing css classes in a standard way wil
    `swarmAnimation` css and js are moved into `docs/dest` along with `src` files with the build task.
    
   `grunt local-docs` compiles the sass, js and builds the docs with (seldon)[https://github.com/meetup/seldon]
-   You should then be able to open your browser to preview the docs at `localhost:8888`.
+   You should then be able to open your browser to preview the docs at `localhost:8111`.
 
   `grunt docs` compiles the sass and builds the docs for the `gh-pages` branch *and pushes*
  
