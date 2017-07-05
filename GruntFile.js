@@ -19,9 +19,24 @@ module.exports = function(grunt) {
 			dist: {
 				files: {
 					'dist/animation.css': 'src/animation.scss',
-					'docs/dest/css/animation.css': 'src/animation.scss',
 					'docs/dest/css/elements.css': DOCS_SRC + 'css/elements.scss'
 				}
+			}
+		},
+
+		'postcss': {
+			options: {
+				processors: [ require('autoprefixer') ],
+			},
+			dist: {
+				'src': 'dist/*.css'
+			}
+		},
+
+		'copy': {
+			doc_css: { 
+				'src': 'dist/animation.css', 
+				'dest': 'docs/dest/css/animation.css',
 			}
 		},
 
@@ -100,7 +115,7 @@ module.exports = function(grunt) {
 	});
 
 	// TODO grunt copy for js, lint, uglify?
-	grunt.registerTask('compile', ['clean', 'sass', 'webpack']);
+	grunt.registerTask('compile', ['clean', 'sass', 'postcss:dist', 'copy:doc_css', 'webpack']);
 	grunt.registerTask('default', ['compile']);
 	grunt.registerTask('docs', ['compile', 'preprocess', 'gh-pages']);
 	// grunt.registerTask('test', ['babel:test', 'webpack', 'jasmine', 'connect:jasmine_site:keepalive']);

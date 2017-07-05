@@ -17,7 +17,10 @@
   },
   "homepage": "https://github.com/meetup/swarm-animation#readme",
   "dependencies": {
-    "bourbon": "^4.2.7"
+    "autoprefixer": "^7.1.1",
+    "bourbon": "^4.2.7",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-postcss": "^0.8.0"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
