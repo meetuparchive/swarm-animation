@@ -225,5 +225,5 @@ module.exports = function(grunt) {
 	grunt.registerTask('docs', ['_docs', 'gh-pages']);
 	grunt.registerTask('_test_compile', ['clean:test', 'compile', 'webpack:test', 'copy:test']);
 	grunt.registerTask('test', ['_test_compile', 'connect:jasmine_site', 'jasmine', 'watch:test']);
-	grunt.registerTask('travis', ['clean:test', 'webpack', 'jasmine']);
+	grunt.registerTask('travis', ['clean:test', 'compile', 'webpack', 'jasmine']);
 };
