@@ -17,15 +17,15 @@
 }
 
 .anim-fade--in {
-	@include animation(fade--in $duration-m ease-in);
-	@include animation-iteration-count(1);
-	@include animation-fill-mode(forwards);
+	animation: fade--in $duration-m ease-in;
+	animation-iteration-count: 1;
+	animation-fill-mode:forwards;
 }
 
 .anim-fade--out {
-	@include animation(fade--out $duration-m ease-out);
-	@include animation-iteration-count(1);
-	@include animation-fill-mode(forwards);
+	animation:fade--out $duration-m ease-out;
+	animation-iteration-count:1;
+	animation-fill-mode:forwards;
 }
 
 .anim-opacity--0 {

@@ -23,9 +23,17 @@ module.exports = function(grunt) {
 				files: {
 					'dist/animation.css': 'src/animation.scss',
 					// css for docs
-					[`${DOCS_DEST}css/animation.css`]: `${SRC}animation.scss`,
-					[`${DOCS_DEST}css/doc_styles.css`]: `${DOCS_SRC}css/doc_styles.scss`,
+					[`${DOCS_DEST}css/doc_styles.css`]: `${DOCS_SRC}css/doc_styles.scss`
 				}
+			}
+		},
+
+		'postcss': {
+			options: {
+				processors: [ require('autoprefixer') ],
+			},
+			dist: {
+				'src': 'dist/*.css'
 			}
 		},
 
@@ -35,6 +43,10 @@ module.exports = function(grunt) {
 				cwd: `${DOCS_SRC}assets/`,
 				src: '*.*',
 				dest: `${DOCS_DEST}assets/`
+			},	
+			docs_css: { 
+				'src': 'dist/animation.css', 
+				'dest': 'docs/dest/css/animation.css'
 			},
 			test: {
 				expand: true,
@@ -202,9 +214,9 @@ module.exports = function(grunt) {
 	});
 
 	// TODO grunt copy for js, lint, uglify?
-	grunt.registerTask('compile', ['clean', 'sass', 'webpack:dist']);
+	grunt.registerTask('compile', ['clean', 'sass', 'postcss:dist', 'webpack:dist']);
 	grunt.registerTask('default', ['compile']);
-	grunt.registerTask('_docs_compile', [ 'compile', 'webpack:docs', 'copy:docs', 'exec:seldon', 'preprocess']);
+	grunt.registerTask('_docs_compile', [ 'compile', 'copy:doc_css', 'webpack:docs', 'copy:docs', 'exec:seldon', 'preprocess']);
 	grunt.registerTask('local-docs', [ '_docs_compile', 'connect:docs', 'watch:docs']);
 	grunt.registerTask('docs', ['_docs', 'gh-pages']);
 	grunt.registerTask('_test_compile', ['clean:test', 'compile', 'webpack:test', 'copy:test']);
