@@ -1,20 +1,7 @@
-// @import "../bourbon/bourbon";
 @import "../node_modules/bourbon/app/assets/stylesheets/_bourbon.scss";
 @import "constants";
 
-@keyframes fade--in {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-.fade--in {
-	animation: fade--in $duration-m ease-in;
-	animation-iteration-count: 1;
-}
-
-.transparent {
-    opacity:0;
-}
+@import "fade";
 
 :fullscreen a {
 	display: flex
