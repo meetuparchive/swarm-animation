@@ -42,15 +42,15 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(2);
 
 
-/***/ },
+/***/ }),
 /* 1 */,
 /* 2 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	'use strict';
 
@@ -66,19 +66,31 @@
 	 * functions for applying css classes, doing transforms consistently
 	 */
 
+	var DURATION_TYPE = {
+		short: 'short',
+		medium: 'medium',
+		long: 'long'
+	};
+
 	var swarmAnimation = {
-		hide: function hide(el) {
-			el.addClass('anim-fade--out');
+		hide: function hide(el, durationType) {
+			var transitionClass = 'anim-transition--opacity';
+			if (durationType) {
+				transitionClass = transitionClass + '--' + DURATION_TYPE[durationType];
+			}
+			el.classList.add(transitionClass, 'anim-opacity--0');
 		},
-		show: function show(el) {
-			el.addClass('anim-fade--in');
-		},
-		addOneTest: function addOneTest(x) {
-			return ++x;
+		show: function show(el, durationType) {
+			var transitionClass = 'anim-transition--opacity';
+			if (durationType) {
+				transitionClass = transitionClass + '--' + DURATION_TYPE[durationType];
+			}
+			el.classList.add(transitionClass, 'anim-opacity--1');
 		}
 	};
 
-	exports.default = swarmAnimation;
+	exports.swarmAnimation = swarmAnimation;
+	exports.DURATION_TYPE = DURATION_TYPE;
 
-/***/ }
+/***/ })
 /******/ ]);

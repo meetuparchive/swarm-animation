@@ -85,8 +85,12 @@
         <a href='#' id='fadeOutLink' class='link'>Fade me out</a>
     </div>
     <div class='row-item'>
+        <div class='boxEl anim-opacity--0'></div>
+        <a href='#' id='fadeInLink' class='link'>Fade me in</a>
+    </div>
+    <div class='row-item'>
         <div class='boxEl anim-opacity--0 anim-fade--in'></div>
-        Fading in...
+        Fading in on load...
     </div>
 </div>
     </div>
@@ -98,8 +102,12 @@
         &lt;a href&#x3D;&#x27;#&#x27; id&#x3D;&#x27;fadeOutLink&#x27; class&#x3D;&#x27;link&#x27;&gt;Fade me out&lt;/a&gt;
     &lt;/div&gt;
     &lt;div class&#x3D;&#x27;row-item&#x27;&gt;
+        &lt;div class&#x3D;&#x27;boxEl anim-opacity--0&#x27;&gt;&lt;/div&gt;
+        &lt;a href&#x3D;&#x27;#&#x27; id&#x3D;&#x27;fadeInLink&#x27; class&#x3D;&#x27;link&#x27;&gt;Fade me in&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&#x27;row-item&#x27;&gt;
         &lt;div class&#x3D;&#x27;boxEl anim-opacity--0 anim-fade--in&#x27;&gt;&lt;/div&gt;
-        Fading in...
+        Fading in on load...
     &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 </div>
@@ -108,6 +116,11 @@
 <pre><code class="lang-js">$(&#39;#fadeOutLink&#39;).on(&#39;click&#39;, function(e) {
     e.preventDefault();
     swarmAnimation.hide(document.querySelector(&#39;.boxEl&#39;));
+});
+
+$(&#39;#fadeInLink&#39;).on(&#39;click&#39;, function(e) {
+    e.preventDefault();
+    swarmAnimation.show(document.querySelectorAll(&#39;.boxEl&#39;)[1]);
 });
 </code></pre>
 </dd>

@@ -42,7 +42,7 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -51,8 +51,6 @@
 	var _jquery2 = _interopRequireDefault(_jquery);
 
 	var _swarmAnimation = __webpack_require__(2);
-
-	var _swarmAnimation2 = _interopRequireDefault(_swarmAnimation);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -65,24 +63,30 @@
 		// animation fade example
 		(0, _jquery2.default)('#fadeOutLink').on('click', function (e) {
 			e.preventDefault();
-			_swarmAnimation2.default.hide(document.querySelector('.boxEl'));
+			_swarmAnimation.swarmAnimation.hide(document.querySelector('.boxEl'));
+		});
+
+		// animation fade example
+		(0, _jquery2.default)('#fadeInLink').on('click', function (e) {
+			e.preventDefault();
+			_swarmAnimation.swarmAnimation.show(document.querySelectorAll('.boxEl')[1]);
 		});
 
 		// Highlightjs - fancy tables parsed from markdown
 		(0, _jquery2.default)('pre code').each(function (i, block) {
-			hljs.highlightBlock(block);
+			hljs.highlightBlock(block); // eslint-disable-line no-undef
 		});
 	});
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = jQuery;
 
-/***/ },
+/***/ }),
 /* 2 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	'use strict';
 
@@ -98,19 +102,31 @@
 	 * functions for applying css classes, doing transforms consistently
 	 */
 
+	var DURATION_TYPE = {
+		short: 'short',
+		medium: 'medium',
+		long: 'long'
+	};
+
 	var swarmAnimation = {
-		hide: function hide(el) {
-			el.addClass('anim-fade--out');
+		hide: function hide(el, durationType) {
+			var transitionClass = 'anim-transition--opacity';
+			if (durationType) {
+				transitionClass = transitionClass + '--' + DURATION_TYPE[durationType];
+			}
+			el.classList.add(transitionClass, 'anim-opacity--0');
 		},
-		show: function show(el) {
-			el.addClass('anim-fade--in');
-		},
-		addOneTest: function addOneTest(x) {
-			return ++x;
+		show: function show(el, durationType) {
+			var transitionClass = 'anim-transition--opacity';
+			if (durationType) {
+				transitionClass = transitionClass + '--' + DURATION_TYPE[durationType];
+			}
+			el.classList.add(transitionClass, 'anim-opacity--1');
 		}
 	};
 
-	exports.default = swarmAnimation;
+	exports.swarmAnimation = swarmAnimation;
+	exports.DURATION_TYPE = DURATION_TYPE;
 
-/***/ }
+/***/ })
 /******/ ]);
