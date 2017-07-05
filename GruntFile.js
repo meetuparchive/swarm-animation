@@ -220,7 +220,7 @@ module.exports = function(grunt) {
 	// TODO grunt copy for js, lint, uglify?
 	grunt.registerTask('compile', ['clean', 'sass', 'postcss:dist', 'webpack:dist']);
 	grunt.registerTask('default', ['compile']);
-	grunt.registerTask('_docs_compile', [ 'compile', 'copy:doc_css', 'webpack:docs', 'copy:docs', 'exec:seldon', 'preprocess']);
+	grunt.registerTask('_docs_compile', [ 'compile', 'copy:docs_css', 'webpack:docs', 'copy:docs', 'exec:seldon', 'preprocess']);
 	grunt.registerTask('local-docs', [ '_docs_compile', 'connect:docs', 'watch:docs']);
 	grunt.registerTask('docs', ['_docs', 'gh-pages']);
 	grunt.registerTask('_test_compile', ['clean:test', 'compile', 'webpack:test', 'copy:test']);
