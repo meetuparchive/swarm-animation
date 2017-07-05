@@ -222,7 +222,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('default', ['compile']);
 	grunt.registerTask('_docs_compile', [ 'compile', 'copy:docs_css', 'webpack:docs', 'copy:docs', 'exec:seldon', 'preprocess']);
 	grunt.registerTask('local-docs', [ '_docs_compile', 'connect:docs', 'watch:docs']);
-	grunt.registerTask('docs', ['_docs', 'gh-pages']);
+	grunt.registerTask('docs', ['_docs_compile', 'gh-pages']);
 	grunt.registerTask('_test_compile', ['clean:test', 'compile', 'webpack:test', 'copy:test']);
 	grunt.registerTask('test', ['_test_compile', 'connect:jasmine_site', 'jasmine', 'watch:test']);
 	grunt.registerTask('travis', ['clean:test', 'compile', 'webpack', 'jasmine']);
