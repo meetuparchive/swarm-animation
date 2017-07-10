@@ -1,9 +1,7 @@
 /*
 * @author ivy
 * @module fade
-* @description anything to do with opacity/transparency
-* @note : this is just test code. feel free to change, I made it to illustrate 
-* how the documentation and project might work
+* @description manipulating opacity to fade in and out
 */
 
 
@@ -22,25 +20,25 @@
 
 .anim-fade--in {
 	animation-delay:2s;
-	animation:fade--in $duration-l ease-in;
+	animation:fade--in $duration--long ease-in;
 	animation-iteration-count:1;
 	animation-fill-mode:forwards;
 }
 
 .anim-fade--in--short {
-	animation:fade--in $duration-s ease-in;
+	animation:fade--in $duration--short ease-in;
 	animation-iteration-count:1;
 	animation-fill-mode:forwards;
 }
 
 .anim-fade--out {
-	animation:fade--out $duration-m ease-out;
+	animation:fade--out $duration--medium ease-out;
 	animation-iteration-count:1;
 	animation-fill-mode:forwards;
 }
 
 .anim-fade--out--short {
-	animation:fade--out $duration-s ease-out;
+	animation:fade--out $duration--short ease-out;
 	animation-iteration-count:1;
 	animation-fill-mode:forwards;
 }
@@ -48,20 +46,20 @@
 /*
 	transitions for js, in response to events and user interaction
 */
-.anim-opacity--0 {
+.opacity--0 {
 	opacity:0;
 }
 
-.anim-opacity--1 {
+.opacity--1 {
 	opacity:1;
 }
 
-.anim-transition--opacity--s {
-	transition: opacity $duration-s ease-in-out;
+.trans-opacity--short {
+	transition: opacity $duration--short ease-in-out;
 }
 
-.anim-transition--opacity {
-	transition: opacity $duration-m ease-in-out;
+.trans-opacity {
+	transition: opacity $duration--medium ease-in-out;
 }
 
 /*doc
@@ -83,11 +81,11 @@ Example fade animations:
 		<a href='#' id='fadeOutLink' class='link'>Fade me out</a>
 	</div>
 	<div class='row-item'>
-		<div class='boxEl anim-opacity--0'></div>
+		<div class='boxEl opacity--0'></div>
 		<a href='#' id='fadeInLink' class='link'>Fade me in</a>
 	</div>
 	<div class='row-item'>
-		<div class='boxEl anim-opacity--0 anim-fade--in'></div>
+		<div class='boxEl opacity--0 anim-fade--in'></div>
 		Fading in on load...
 	</div>
 </div>

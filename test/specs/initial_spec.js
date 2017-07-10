@@ -6,9 +6,9 @@ describe('a first test boilerplate for swarmAnimation functions', function () {
 
 	describe('opacity and fade tests', function() {
 
-		const opacityClass0 = 'anim-opacity--0';
-		const opacityClass1 = 'anim-opacity--1';
-		const transitionClass = 'anim-transition--opacity';
+		const opacityClass0 = 'opacity--0';
+		const opacityClass1 = 'opacity--1';
+		const transitionClass = 'trans-opacity';
 
 		describe('opacity classes', function() {
 
