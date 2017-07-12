@@ -1,7 +1,7 @@
 /*
 * @author ivy
 * @module fade
-* @description manipulating opacity to fade in and out
+* @description css for manipulating opacity - fade in and out
 */
 
 
@@ -20,31 +20,31 @@
 
 .anim-fade--in {
 	animation-delay:2s;
-	animation:fade--in $duration--long ease-in;
+	animation:fade--in $duration--long $easing--enter;
 	animation-iteration-count:1;
 	animation-fill-mode:forwards;
 }
 
 .anim-fade--in--short {
-	animation:fade--in $duration--short ease-in;
+	animation:fade--in $duration--short $easing--enter;
 	animation-iteration-count:1;
 	animation-fill-mode:forwards;
 }
 
 .anim-fade--out {
-	animation:fade--out $duration--medium ease-out;
+	animation:fade--out $duration--medium $easing--exit;
 	animation-iteration-count:1;
 	animation-fill-mode:forwards;
 }
 
 .anim-fade--out--short {
-	animation:fade--out $duration--short ease-out;
+	animation:fade--out $duration--short $easing--exit;
 	animation-iteration-count:1;
 	animation-fill-mode:forwards;
 }
 
 /*
-	transitions for js, in response to events and user interaction
+	opacity modifiers	
 */
 .opacity--0 {
 	opacity:0;
@@ -54,13 +54,27 @@
 	opacity:1;
 }
 
-.trans-opacity--short {
-	transition: opacity $duration--short ease-in-out;
+/*
+	transition css 
+	used for js, in response to events and user interaction
+*/
+
+.trans-opacity--enter {
+	transition: opacity $duration--medium $easing--enter;
 }
 
-.trans-opacity {
-	transition: opacity $duration--medium ease-in-out;
+.trans-opacity--enter--short {
+	transition: opacity $duration--short $easing--enter;
 }
+
+.trans-opacity--exit {
+	transition: opacity $duration--medium $easing--exit;
+}
+
+.trans-opacity--exit--short {
+	transition: opacity $duration--short $easing--exit;
+}
+
 
 /*doc
 ---
