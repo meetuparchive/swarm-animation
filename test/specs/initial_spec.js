@@ -8,7 +8,8 @@ describe('a first test boilerplate for swarmAnimation functions', function () {
 
 		const opacityClass0 = 'opacity--0';
 		const opacityClass1 = 'opacity--1';
-		const transitionClass = 'trans-opacity';
+		const transitionClassEnter = 'trans-opacity--enter';
+		const transitionClassExit = 'trans-opacity--exit';
 
 		describe('opacity classes', function() {
 
@@ -56,25 +57,25 @@ describe('a first test boilerplate for swarmAnimation functions', function () {
 
 			it('hide applies proper class', function() {
 				swarmAnimation.hide(el);
-				expect(el.classList.contains(transitionClass)).toBe(true);
+				expect(el.classList.contains(transitionClassExit)).toBe(true);
 				expect(el.classList.contains(opacityClass0)).toBe(true);
 			});
 
 			it('hide applies proper class with specified short duration', function () {
 				swarmAnimation.hide(el, DURATION_TYPE.short);
-				expect(el.classList.contains(`${transitionClass}--${DURATION_TYPE.short}`)).toBe(true);
+				expect(el.classList.contains(`${transitionClassExit}--${DURATION_TYPE.short}`)).toBe(true);
 				expect(el.classList.contains(opacityClass0)).toBe(true);
 			});
 
 			it('show applies proper class', function() {
 				swarmAnimation.show(el);
-				expect(el.classList.contains(transitionClass)).toBe(true);
+				expect(el.classList.contains(transitionClassEnter)).toBe(true);
 				expect(el.classList.contains(opacityClass1)).toBe(true);
 			});
 
 			it('show applies proper class with specified short duration', function () {
 				swarmAnimation.show(el, DURATION_TYPE.short);
-				expect(el.classList.contains(`${transitionClass}--${DURATION_TYPE.short}`)).toBe(true);
+				expect(el.classList.contains(`${transitionClassEnter}--${DURATION_TYPE.short}`)).toBe(true);
 				expect(el.classList.contains(opacityClass1)).toBe(true);
 			});
 		});
