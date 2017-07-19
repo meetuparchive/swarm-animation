@@ -1,3 +1,19 @@
+/*
+* @author ivy, mikep
+* @module constants
+* @description constants for animation duration, easing curves, and ...
+*/
+
+// @note: this is still a WIP. new constants can be added or you can favor your own custom
+// values if the animation looks better with those, just please 
+// let us know if you find something looks better!
+
 // durations
-$duration-s: .2s;
-$duration-m: .5s;
+$duration--short: .1s;
+$duration--medium: .25s;
+$duration--long: .5s;
+
+//easing
+$easing--standard: cubic-bezier(.4, 0, .2, 1); // stays on screen from start to finish
+$easing--enter: cubic-bezier(0, 0, .2, 1); // entering the screen
+$easing--exit: cubic-bezier(.4, 0, 0, 1); // exiting the screen

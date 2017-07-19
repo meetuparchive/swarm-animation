@@ -7,18 +7,28 @@
  * functions for applying css classes, doing transforms consistently
  */
 
+const DURATION_TYPE = {
+	short: 'short',
+	medium: 'medium',
+	long: 'long'
+};
+
 const swarmAnimation = {
-	hide(el) {
-		el.classList.add('anim-fade--out');
+	hide(el, durationType) {
+		let transitionClass = 'trans-fadeOut';
+		if (durationType) {
+			transitionClass = `${transitionClass}--${DURATION_TYPE[durationType]}`;
+		}
+		el.classList.add(transitionClass, 'opacity--0');
 	},
 
-	show(el) {
-		el.classList.remove('anim-fade--in');
-	},
-
-	addOneTest(x) {
-		return ++x;
+	show(el, durationType) {
+		let transitionClass = 'trans-fadeIn';
+		if (durationType) {
+			transitionClass = `${transitionClass}--${DURATION_TYPE[durationType]}`;
+		}
+		el.classList.add(transitionClass, 'opacity--1');
 	}
 };
 
-export default swarmAnimation;
+export { swarmAnimation, DURATION_TYPE };

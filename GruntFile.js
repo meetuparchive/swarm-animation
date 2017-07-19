@@ -155,6 +155,10 @@ module.exports = function(grunt) {
 				outfile: `${TEST_DEST}SpecRunner.html`,
 				styles: `${TEST_DEST}animation.css`,
 				tempDir: `${TEST_DEST}/jasmine`,
+				vendor: [
+					'node_modules/jquery/dist/jquery.min.js',
+					'node_modules/jasmine-jquery/lib/jasmine-jquery.js'
+				],
 				keepRunner: true
 				// host: 'http://127.0.0.1:8000/'
 			}
@@ -216,10 +220,10 @@ module.exports = function(grunt) {
 	// TODO grunt copy for js, lint, uglify?
 	grunt.registerTask('compile', ['clean', 'sass', 'postcss:dist', 'webpack:dist']);
 	grunt.registerTask('default', ['compile']);
-	grunt.registerTask('_docs_compile', [ 'compile', 'copy:doc_css', 'webpack:docs', 'copy:docs', 'exec:seldon', 'preprocess']);
+	grunt.registerTask('_docs_compile', [ 'compile', 'copy:docs_css', 'webpack:docs', 'copy:docs', 'exec:seldon', 'preprocess']);
 	grunt.registerTask('local-docs', [ '_docs_compile', 'connect:docs', 'watch:docs']);
-	grunt.registerTask('docs', ['_docs', 'gh-pages']);
+	grunt.registerTask('docs', ['_docs_compile', 'gh-pages']);
 	grunt.registerTask('_test_compile', ['clean:test', 'compile', 'webpack:test', 'copy:test']);
 	grunt.registerTask('test', ['_test_compile', 'connect:jasmine_site', 'jasmine', 'watch:test']);
-	grunt.registerTask('travis', ['clean:test', 'webpack', 'jasmine']);
+	grunt.registerTask('travis', ['clean:test', 'compile', 'webpack', 'jasmine']);
 };

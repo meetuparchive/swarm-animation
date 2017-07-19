@@ -1,45 +1,79 @@
 /*
 * @author ivy
 * @module fade
-* @description anything to do with opacity/transparency
-* @note : this is just test code. feel free to change, I made it to illustrate 
-* how the documentation and project might work
+* @description css for manipulating opacity - fade in and out
 */
 
-@keyframes fade--in {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+
+/*
+	use keyframes fade for animation on page load
+*/
+@keyframes fadeIn {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
 }
 
-@keyframes fade--out {
-    0% { opacity: 1; }
-    100% { opacity: 0; }
+@keyframes fadeOut {
+	0% { opacity: 1; }
+	100% { opacity: 0; }
 }
 
-.anim-fade--in {
-	animation: fade--in $duration-m ease-in;
-	animation-iteration-count: 1;
-	animation-fill-mode:forwards;
-}
-
-.anim-fade--out {
-	animation:fade--out $duration-m ease-out;
+.anim-fadeIn {
+	animation:fadeIn $duration--medium $easing--enter;
 	animation-iteration-count:1;
 	animation-fill-mode:forwards;
 }
 
-.anim-opacity--0 {
-    opacity:0;
+.anim-fadeIn--short {
+	animation:fadeIn $duration--short $easing--enter;
+	animation-iteration-count:1;
+	animation-fill-mode:forwards;
 }
 
-.anim-opacity--1 {
-    opacity:1;
+.anim-fadeOut {
+	animation:fadeOut $duration--medium $easing--exit;
+	animation-iteration-count:1;
+	animation-fill-mode:forwards;
 }
 
-// for popover example
-.anim-opacity--short {
-    transition: opacity $duration-s ease-in-out;
+.anim-fadeOut--short {
+	animation:fadeOut $duration--short $easing--exit;
+	animation-iteration-count:1;
+	animation-fill-mode:forwards;
 }
+
+/*
+	opacity modifiers	
+*/
+.opacity--0 {
+	opacity:0;
+}
+
+.opacity--1 {
+	opacity:1;
+}
+
+/*
+	transition css 
+	used for js, in response to events and user interaction
+*/
+
+.trans-fadeIn {
+	transition: opacity $duration--medium $easing--enter;
+}
+
+.trans-fadeIn--short {
+	transition: opacity $duration--short $easing--enter;
+}
+
+.trans-fadeOut {
+	transition: opacity $duration--medium $easing--exit;
+}
+
+.trans-fadeOut--short {
+	transition: opacity $duration--short $easing--exit;
+}
+
 
 /*doc
 ---
@@ -60,8 +94,12 @@ Example fade animations:
 		<a href='#' id='fadeOutLink' class='link'>Fade me out</a>
 	</div>
 	<div class='row-item'>
-		<div class='boxEl anim-opacity--0 anim-fade--in'></div>
-		Fading in...
+		<div class='boxEl opacity--0'></div>
+		<a href='#' id='fadeInLink' class='link'>Fade me in</a>
+	</div>
+	<div class='row-item'>
+		<div class='boxEl opacity--0 anim-fadeIn'></div>
+		Fading in on load...
 	</div>
 </div>
 ```
@@ -71,6 +109,12 @@ $('#fadeOutLink').on('click', function(e) {
 	e.preventDefault();
 	swarmAnimation.hide(document.querySelector('.boxEl'));
 });
+
+$('#fadeInLink').on('click', function(e) {
+	e.preventDefault();
+	swarmAnimation.show(document.querySelectorAll('.boxEl')[1]);
+});
+
 ```
 */
 
