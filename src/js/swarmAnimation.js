@@ -15,7 +15,7 @@ const DURATION_TYPE = {
 
 const swarmAnimation = {
 	hide(el, durationType) {
-		let transitionClass = 'trans-opacity--exit';
+		let transitionClass = 'trans-fadeOut';
 		if (durationType) {
 			transitionClass = `${transitionClass}--${DURATION_TYPE[durationType]}`;
 		}
@@ -23,7 +23,7 @@ const swarmAnimation = {
 	},
 
 	show(el, durationType) {
-		let transitionClass = 'trans-opacity--enter';
+		let transitionClass = 'trans-fadeIn';
 		if (durationType) {
 			transitionClass = `${transitionClass}--${DURATION_TYPE[durationType]}`;
 		}

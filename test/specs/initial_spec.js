@@ -8,8 +8,8 @@ describe('a first test boilerplate for swarmAnimation functions', function () {
 
 		const opacityClass0 = 'opacity--0';
 		const opacityClass1 = 'opacity--1';
-		const transitionClassEnter = 'trans-opacity--enter';
-		const transitionClassExit = 'trans-opacity--exit';
+		const transitionClassEnter = 'trans-fadeIn';
+		const transitionClassExit = 'trans-fadeOut';
 
 		describe('opacity classes', function() {
 

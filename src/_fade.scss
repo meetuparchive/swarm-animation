@@ -8,37 +8,37 @@
 /*
 	use keyframes fade for animation on page load
 */
-@keyframes fade--in {
+@keyframes fadeIn {
 	0% { opacity: 0; }
 	100% { opacity: 1; }
 }
 
-@keyframes fade--out {
+@keyframes fadeOut {
 	0% { opacity: 1; }
 	100% { opacity: 0; }
 }
 
-.anim-fade--in {
+.anim-fadeIn {
 	animation-delay:2s;
-	animation:fade--in $duration--long $easing--enter;
+	animation:fadeIn $duration--long $easing--enter;
 	animation-iteration-count:1;
 	animation-fill-mode:forwards;
 }
 
-.anim-fade--in--short {
-	animation:fade--in $duration--short $easing--enter;
+.anim-fadeIn--short {
+	animation:fadeIn $duration--short $easing--enter;
 	animation-iteration-count:1;
 	animation-fill-mode:forwards;
 }
 
-.anim-fade--out {
-	animation:fade--out $duration--medium $easing--exit;
+.anim-fadeOut {
+	animation:fadeOut $duration--medium $easing--exit;
 	animation-iteration-count:1;
 	animation-fill-mode:forwards;
 }
 
-.anim-fade--out--short {
-	animation:fade--out $duration--short $easing--exit;
+.anim-fadeOut--short {
+	animation:fadeOut $duration--short $easing--exit;
 	animation-iteration-count:1;
 	animation-fill-mode:forwards;
 }
@@ -59,19 +59,19 @@
 	used for js, in response to events and user interaction
 */
 
-.trans-opacity--enter {
+.trans-fadeIn {
 	transition: opacity $duration--medium $easing--enter;
 }
 
-.trans-opacity--enter--short {
+.trans-fadeIn--short {
 	transition: opacity $duration--short $easing--enter;
 }
 
-.trans-opacity--exit {
+.trans-fadeOut {
 	transition: opacity $duration--medium $easing--exit;
 }
 
-.trans-opacity--exit--short {
+.trans-fadeOut--short {
 	transition: opacity $duration--short $easing--exit;
 }
 
