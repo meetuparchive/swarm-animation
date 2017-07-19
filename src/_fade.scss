@@ -19,8 +19,7 @@
 }
 
 .anim-fadeIn {
-	animation-delay:2s;
-	animation:fadeIn $duration--long $easing--enter;
+	animation:fadeIn $duration--medium $easing--enter;
 	animation-iteration-count:1;
 	animation-fill-mode:forwards;
 }
