@@ -4,7 +4,8 @@
   "description": "Reusable, performant CSS animations and js helpers, React-friendly",
   "main": "src/animations.sass",
   "scripts": {
-    "test": "grunt travis --verbose"
+    "test": "grunt travis --verbose",
+    "build": "grunt compile"
   },
   "repository": {
     "type": "git",
@@ -35,7 +36,7 @@
     "grunt-gh-pages": "^2.0.0",
     "grunt-postcss": "^0.8.0",
     "grunt-preprocess": "5.1.0",
-    "grunt-sass": "^1.2.1",
+    "grunt-sass": "^2.0.0",
     "grunt-webpack": "^1.0.18",
     "load-grunt-tasks": "^3.5.2",
     "require": "^2.4.20",
