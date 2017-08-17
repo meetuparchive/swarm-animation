@@ -1,0 +1,63 @@
+/* layout scss */
+
+.trans-fadeIn {
+    opacity:0;
+
+    &.opacity1 {
+        transition: opacity $duration--short $easing--enter;
+        opacity:1;
+    }
+}
+
+.trans-fadeOut {
+    opacity:1;
+
+    &.opacity0 {
+        transition: opacity $duration--short $easing--exit;
+        opacity:0;
+    }
+}
+
+.trans-scale {
+    transition: height $duration--long $easing--standard !important; // the modal css has transforms for some reason
+    height:180px;
+}
+
+.trans-modal {
+    @extend .trans-scale;
+}
+
+.trans-modal-enter {
+    @extend .trans-scale;
+    @extend .trans-fadeIn;
+    @extend .opacity--0;
+}
+
+.trans-modal-enter-active {
+    @extend .trans-fadeIn;
+    @extend .opacity--1;
+}
+
+.trans-modal-leave {
+    @extend .trans-fadeOut;
+    @extend .opacity--1;
+}
+
+.trans-modal-leave-active {
+    @extend .trans-fadeOut;
+    @extend .opacity--0;
+}
+
+/*doc
+---
+title: Modal Animations 
+name: .trans-moal
+category: Component Animations
+---
+
+Example fade animations:
+
+```html_example
+    <div id='modal'></div>
+```
+*/
