@@ -79,7 +79,8 @@ module.exports = function(grunt) {
 			docs: {
 				entry: {
 					swarmAnimation: [`./${SRC}js/swarmAnimation.js`],
-					site_docs: `./${DOCS_SRC}js/docs.js`
+					site_docs: `./${DOCS_SRC}js/docs.js`,
+					site_docs_react: `./${DOCS_SRC}js/docs_react.jsx`
 				},
 				output: {
 					path: `./${DOCS_DEST}js`,
@@ -90,14 +91,21 @@ module.exports = function(grunt) {
 				},
 				module: {
 					loaders: [{
-						test: /\.js$/,
+						test: /\.(js|jsx)$/,
 						exclude: /node_modules/,
+						query: {
+							presets: ['react', 'es2015', 'stage-2']
+						},
 						loader: 'babel-loader'
 					}]
 				},
 				externals: {
 					jquery: 'jQuery'
-				}
+				},
+
+				resolve: {
+        			extensions: ['', '.js', '.jsx']
+    			}
 			},
 
 			// TODO, make test just use compiled swarmAnimation from main
@@ -175,7 +183,8 @@ module.exports = function(grunt) {
 					ANIMATION_CSS_PATH: 'css/animation.css',
 					DOCS_CSS_PATH: 'css/doc_styles.css',
 					ANIMATION_JS_PATH: 'js/swarmAnimation.js',
-					DOCS_JS_PATH: 'js/site_docs.js'
+					DOCS_JS_PATH: 'js/site_docs.js',
+					DOCS_REACT_PATH: 'js/site_docs_react.js'
 				},
 			},
 			docs: {
