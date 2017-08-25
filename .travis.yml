@@ -2,8 +2,6 @@ sudo: false
 language: node_js
 node_js:       
  - '8'
-before_install:
- - npm install -g grunt-cli
 
 cache:
   yarn: true
@@ -18,8 +16,11 @@ branches:
 env:
   global:
     - CI_BUILD_NUMBER=$TRAVIS_BUILD_NUMBER
+
 before_install:
+  - openssl aes-256-cbc -K $encrypted_6319a4cbc767_key -iv $encrypted_6319a4cbc767_iv -in github_deploy_key.enc -out github_deploy_key -d
   - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+  - npm install -g grunt-cli
 
 before_script:
   - git diff --exit-code
