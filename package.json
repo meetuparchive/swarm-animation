@@ -7,10 +7,7 @@
     "test": "grunt travis --verbose",
     "build": "grunt compile"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/meetup/swarm-animation.git"
-  },
+  "repository": "git+https://github.com/meetup/swarm-animation.git",
   "author": "ivy@meetup.com",
   "license": "MIT",
   "bugs": {
