@@ -16,9 +16,10 @@ branches:
 env:
   global:
     - CI_BUILD_NUMBER=$TRAVIS_BUILD_NUMBER
+    - secure: "aFd+aaK09SIpfb8YhW7OrVA9Y+pWL7WxzfIcLRfPF9X4cfM3zP27bRsnTJrT2c+LwjSuGmcyVc/T6jxBuOATyb8GIEqz+Qj+RrPymoIBw/5QyDZ1VsBL68DyXAZsAtMUQ/n41IbddJeJnYkjZPHOHgTLSBxkcm/Wy2kgWQEg1bTrQylQkrWFbK4XVxv2qHhaBs2mvBWIt/388tyCB6huzflL+ZhYvEsquOom9HS2I/cvO0VNxho80tpkH/LL/4HCng0R5LbnPmWnSMnEJzvhzPTQgOOx3PwdVu94DhlB8uSZK4TyEaEsr/HwLgMyNo8g8FI4C98ko0/BHuylwQKtu7ymAm8DZyfPpimSwBieK2WnK4t//hSeq5Vs8hjYMxlZubTRTloAK7N8z8F2d2BujHGzjXrL/vVs6eQqvlKOHpjVbMBRcc1ltwqMh3XuGwLBjs93B0jIc6bByB0eJQAx0LwIGG3tnuNe4B9x9Ar7UohHuqzz2/JuNeqcUqpQ2aBdd+XqmK2rn3DklGkLIkCQF0ww2bNKoYylx4WFRI5DXYqH252P+o5oBKQ8++EaFWXV3T9NMqRh6/wPgz0OVTvmlRJGPQadbPqNdGQzo60vVmvfzpZbuh6yowxxtg56HPhI7xthzyQwr0HYJ4tvbSAzs51vmQQ2/9sgFVDqFz5x0FA="
 
 before_install:
-  - openssl aes-256-cbc -K $encrypted_6319a4cbc767_key -iv $encrypted_6319a4cbc767_iv -in github_deploy_key.enc -out github_deploy_key -d
+  - openssl aes-256-cbc -K $encrypted_6319a4cbc767_key -iv $encrypted_6319a4cbc767_iv -in '.travis/github_deploy_key.enc' -out github_deploy_key -d
   - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
   - npm install -g grunt-cli
 
@@ -29,6 +30,7 @@ before_script:
 after_script:
   - git config --global user.email "builds@travis-ci.com"
   - git config --global user.name "Travis CI"
+  - $(npm bin)/set-up-ssh --key "$encrypted_6319a4cbc767_key" --iv "$encrypted_6319a4cbc767_iv" --path-encrypted-key ".travis/github_deploy_key.enc"
   - >
     [ "${TRAVIS_BRANCH}" = "master" ] && [ "${TRAVIS_PULL_REQUEST}" = "false" ] &&
     export GIT_TAG=$(make version) ||
