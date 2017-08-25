@@ -1,4 +1,8 @@
-# swarm-animation [![Build Status](https://travis-ci.org/meetup/swarm-animation.svg?branch=master)](https://travis-ci.org/meetup/swarm-animation)
+# swarm-animation 
+[![npm version](https://badge.fury.io/js/swarm-animation.svg)](https://badge.fury.io/js/swarm-animation)
+[![Build Status](https://travis-ci.org/meetup/swarm-animation.svg?branch=master)](https://travis-ci.org/meetup/swarm-animation)
+[![Coverage Status](https://coveralls.io/repos/github/meetup/swarm-animation/badge.svg?branch=master)](https://coveralls.io/github/meetup/swarm-animation?branch=master)
+
 Reusable animation CSS and js for web, React friendly
 http://meetup.github.io/swarm-animation/
 
