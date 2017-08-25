@@ -96,6 +96,6 @@ add/remove (lists of events, attendees)
 
 ---
 
-For resources and articles on animation - check out the [wiki](https://github.com/meetup/swarm-animation/wiki/Animation-Resources-&-Articles)
+For resources and articles on animation, check out the [wiki](https://github.com/meetup/swarm-animation/wiki/Animation-Resources-&-Articles)
 
 
